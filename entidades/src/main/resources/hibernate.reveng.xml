@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="nomifast"/>
+  <table-filter match-name="regimen_contratacion"/>
+  <table-filter match-name="informacion_opcional"/>
+  <table-filter match-name="percepcion_empresa"/>
+  <table-filter match-name="riesgo_puesto"/>
+  <table-filter match-name="periodicidad_pago"/>
+  <table-filter match-name="deduccion"/>
+  <table-filter match-name="sucursal"/>
+  <table-filter match-name="domicilio"/>
+  <table-filter match-name="deduccion_empresa"/>
+  <table-filter match-name="empresa"/>
+  <table-filter match-name="percepcion"/>
+  <table-filter match-name="regimen_fiscal"/>
+  <table-filter match-name="empleado"/>
+  <table-filter match-name="recibo"/>
+  <table-filter match-name="banco"/>
+</hibernate-reverse-engineering>
