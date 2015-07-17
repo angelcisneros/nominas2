@@ -23,7 +23,7 @@ public @Data class Rol implements java.io.Serializable {
 
     @Id
     @Column(name = "rol", unique = true, nullable = false)
-    private int rol;
+    private String rol;
     
     @Column(name = "descripcion", nullable = false, length = 145)
     private String descripcion;
@@ -31,7 +31,7 @@ public @Data class Rol implements java.io.Serializable {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "rol")
     private List<RolUsuario> rolUsuarios;
 
-    public Rol(int rol, String descripcion) {
+    public Rol(String rol, String descripcion) {
         this.rol = rol;
         this.descripcion = descripcion;
     }

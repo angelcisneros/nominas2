@@ -4,6 +4,7 @@
     Author     : vcisneros
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
 
@@ -15,7 +16,13 @@
         <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
         <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="css/css.css">
-        
+        <c:if test="${errorEmpresa eq true or errorEmpresa eq 'true'}">
+            <script>
+                $(document).on('ready', function(){
+                    $('#log-empresa').modal('show');
+                });
+            </script>
+        </c:if>
     </head>
 
     <body>
@@ -74,13 +81,13 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <form id="loginEmpresaForm" role="form" method="post">
+                                <form id="loginEmpresaForm" role="form" method="post" action="empresa/loginEmpresa">
                                     <div class="form-group has-feedback">
-                                        <input class="form-control input-lg" id="rfcEmpresa" placeholder="RFC" type="text">
+                                        <input class="form-control input-lg" id="rfcEmpresa" placeholder="RFC" type="text" name="j_username">
                                         <span class="fa form-control-feedback fa-user"></span>
                                     </div>
                                     <div class="form-group has-feedback">
-                                        <input class="form-control input-lg" id="passwordRfc" placeholder="CONTRASEÑA" type="password">
+                                        <input class="form-control input-lg" id="passwordRfc" placeholder="CONTRASEÑA" type="password" name="j_password">
                                         <span class="fa form-control-feedback fa-lock"></span>
                                     </div>
                                     <div class="form-group">
@@ -93,7 +100,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button id="logEmpresa" type="submit" class="btn btn-block btn-lg btn-success">Entrar</button>
+                                    <input type="submit" class="btn btn-block btn-lg btn-success" value="ENtrar"/>
                                 </form>
                             </div>
                         </div>
@@ -116,15 +123,13 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <form role="form">
+                                <form id="loginEmpleadoForm" role="form" method="post" action="loginEmpleado">
                                     <div class="form-group has-feedback">
-                                        <input class="form-control input-lg" id="exampleInputEmail1" placeholder="CORREO"
-                                               type="text">
+                                        <input class="form-control input-lg" placeholder="CORREO" type="text" name="j_username">
                                         <span class="fa form-control-feedback fa-user"></span>
                                     </div>
                                     <div class="form-group has-feedback">
-                                        <input class="form-control input-lg" id="exampleInputPassword1" placeholder="CONTRASEÑA"
-                                               type="password">
+                                        <input class="form-control input-lg" placeholder="CONTRASEÑA" type="password" name="j_password">
                                         <span class="fa form-control-feedback fa-lock"></span>
                                     </div>
                                     <div class="form-group">
@@ -135,7 +140,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-block btn-lg btn-success">Entrar</button>
+                                    <input type="submit" class="btn btn-block btn-lg btn-success" value="Entrar"/>
                                 </form>
                             </div>
                         </div>

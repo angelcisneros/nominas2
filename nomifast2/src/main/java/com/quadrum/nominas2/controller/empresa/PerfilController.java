@@ -19,16 +19,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author vcisneros
  */
 @Controller
+@RequestMapping(value = "empresa/")
 public class PerfilController {
 
     @RequestMapping(value = "perfil")
     public String perfil(HttpSession session, Model model) {
-        Empresa e = (Empresa) session.getAttribute(EMPRESA);
-        if(e == null){
-            model.addAttribute(LOGIN, LOGEATE);
-            return "index";
-        }
-        model.addAttribute("empresa", e);
+        //model.addAttribute("empresa", e);
         return "empresa/perfil";
     }
 

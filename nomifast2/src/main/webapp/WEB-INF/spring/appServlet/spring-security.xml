@@ -1,21 +1,40 @@
 <beans:beans xmlns="http://www.springframework.org/schema/security"
              xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-    http://www.springframework.org/schema/security
-    http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+             xmlns:context="http://www.springframework.org/schema/context"
+             xmlns:mvc="http://www.springframework.org/schema/mvc" 
+             xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
+                http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+                http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+    
 
-    <http auto-config="true" use-expressions="true">
+    
+    <context:component-scan base-package="com.quadrum.nominas2.controller"/>
+    <global-method-security  secured-annotations="enabled"/>
+
+    <http auto-config="true" use-expressions="true" create-session="ifRequired">
+    <!--
         <intercept-url pattern="/js/**" access="permitAll" />
         <intercept-url pattern="/images/**" access="permitAll" />
         <intercept-url pattern="/js/**" access="permitAll" />
         <intercept-url pattern="/css/**" access="permitAll" />
-        <intercept-url pattern="/" access="permitAll"/>
+        
         <intercept-url pattern="/**/" access="hasAnyRole('ROLE_EMPRESA')"/>
         <intercept-url pattern="/admin/" access="permitAll" />
         <intercept-url pattern="/admin/**" access="hasAnyRole('ROLE_ADMIN','ROLE_MODERATOR') or hasIpAddress('0:0:0:0:0:0:0:1')" />
-        <form-login login-page="/" default-target-url="/secured/access.htm" always-use-default-target="true" authentication-success-handler-ref="loginEmpresaForm"/>
-        <logout logout-success-url="/LOGOUT_URL" />
+       
+        
+        -->
+        <intercept-url pattern="/empresa/*" access="hasRole('ROL_EMPRESA')"/>
+        <intercept-url pattern="/quadrum/*" access="hasRole('ROL_ADMIN')"/>
+        <form-login login-page="/"  login-processing-url="/empresa/loginEmpresa" default-target-url="/empresa/inicio" authentication-failure-url="/empresa/failEmpresa"/>
+        <form-login login-page="/" login-processing-url="/empleado/loginEmpleado" default-target-url="/empleado/inicio" authentication-failure-url="/empleado/failEmpleado" />
+        <form-login login-page="/admin" login-processing-url="/quadrum/loginQuadrum" default-target-url="/quadrum/inicio" authentication-failure-url="/quadrum/failEmpleado" />
+        <logout invalidate-session="true" logout-success-url="/"/>
+        <session-management >
+            <concurrency-control max-sessions="2" />
+        </session-management>
     </http>
 
     <beans:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
@@ -25,10 +44,11 @@
     <authentication-manager>
         <authentication-provider>
             <password-encoder ref="encoder" />
-            <user-service>
-                <user name="admin" password="$2a$12$cOqgJ6LE44ZmntyPTixH0OFi0/OUCW/6LB1R2quj3qluMvBFngS9u" authorities="ROLE_ADMIN" />
-            </user-service>
+            <jdbc-user-service data-source-ref="dataSource"
+                               users-by-username-query="SELECT user_name,password,enable FROM usuario WHERE user_name=?"
+                               authorities-by-username-query="SELECT usuario, rol FROM rol_usuario WHERE usuario=?" />
         </authentication-provider>
     </authentication-manager>
+    
 
 </beans:beans>

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 </div></div></div>
 <nav id="menu">
     <ul>
@@ -29,7 +30,7 @@
             <a id="deducciones" href="deducciones"><i class="fa fa-fw -circle -text s -photo-o -circle fa-minus-circle"></i>Deducciones</a>
         </li>
         <li>
-            <a href="#"><i class="fa fa-fw -circle -text s fa-sign-out"></i>Cerrar Sesión</a>
+            <a href="<c:url value="../j_spring_security_logout"/>"><i class="fa fa-fw -circle -text s fa-sign-out"></i>Cerrar Sesión</a>
         </li>
     </ul>
 </nav>

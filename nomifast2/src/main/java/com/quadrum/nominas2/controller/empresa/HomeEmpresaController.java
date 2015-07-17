@@ -9,10 +9,9 @@ package com.quadrum.nominas2.controller.empresa;
 import com.quadrum.nominas2.servicios.util.LoginEmpresa;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,16 +21,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author vcisneros
  */
 @Controller
+@RequestMapping(value = "empresa/")
 public class HomeEmpresaController {
-    @RequestMapping(value = "/")
-    public String homeController(HttpSession session, Model model) {
-        return "index";
-    }
     
-    @ResponseBody
-    @RequestMapping(value = "loginEmpresa", method = RequestMethod.POST)
-    public String loginEmpresa(@Valid @ModelAttribute LoginEmpresa loginEmpresa, BindingResult result, HttpSession session, Model model) {
-        
+    
+    @RequestMapping(value = "/failEmpresa")
+    public String hola(Model model) {
+        model.addAttribute("errorEmpresa", true);
         return "index";
     }
 
@@ -40,18 +36,19 @@ public class HomeEmpresaController {
        
         return "templates/404";
     }
-
     @RequestMapping(value = "inicio")
     public String inicio(HttpSession session, Model model) {
        
         return "empresaTemplates/inicio";
     }
     
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "empleados")
     public String empleados(HttpSession session, Model model) {
        
         return "empresa/empleados";
     }
+    
     @RequestMapping(value = "sucursales")
     public String sucursales(HttpSession session, Model model) {
        

@@ -12,7 +12,7 @@ import lombok.Data;
 public @Data class RolUsuarioId implements java.io.Serializable {
 
     @Column(name="rol", nullable=false)
-    private int rol;
+    private String rol;
     
     @Column(name = "usuario", nullable = false, length = 50)
     private String usuario;
