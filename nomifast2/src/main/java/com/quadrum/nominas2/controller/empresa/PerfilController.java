@@ -5,10 +5,7 @@
  */
 package com.quadrum.nominas2.controller.empresa;
 
-import com.quadrum.nominas2.entidades.Empresa;
-import static com.quadrum.nominas2.servicios.util.Llave.EMPRESA;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.LOGEATE;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.LOGIN;
+
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

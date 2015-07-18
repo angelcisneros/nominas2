@@ -21,4 +21,9 @@ public class Logins {
     public String homeController(HttpSession session, Model model) {
         return "index";
     }
+    @RequestMapping(value = "failEmpresa")
+    public String hola(Model model) {
+        model.addAttribute("errorEmpresa", true);
+        return "index";
+    }
 }

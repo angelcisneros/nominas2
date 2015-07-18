@@ -26,12 +26,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping(QUADRUM_PATH)
 public class HomeAdministradorController {
     
-    @ResponseBody
-    @RequestMapping(value = "loginQUadrum", method = RequestMethod.GET)
-    public String loginQUadrum(@Valid @ModelAttribute("administrador") Administrador administrador, BindingResult result, HttpSession session, Model model){
-        if(result.hasErrors()){
-            
-        }
-        return "";
+    @RequestMapping(value = "*")
+    public String error404(Model model) {
+        return "templates/404";
+    }
+
+    @RequestMapping(value = "inicio")
+    public String inicio(Model model) {
+        return "empresaTemplates/inicio";
     }
 }

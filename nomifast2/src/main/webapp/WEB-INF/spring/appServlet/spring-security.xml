@@ -26,15 +26,18 @@
        
         
         -->
-        <intercept-url pattern="/empresa/*" access="hasRole('ROL_EMPRESA')"/>
+        <intercept-url pattern="/empresa/*" access="hasRole('ROL_EMPRESA', 'ROL_SUCURSAL')"/>
         <intercept-url pattern="/quadrum/*" access="hasRole('ROL_ADMIN')"/>
-        <form-login login-page="/"  login-processing-url="/empresa/loginEmpresa" default-target-url="/empresa/inicio" authentication-failure-url="/empresa/failEmpresa"/>
-        <form-login login-page="/" login-processing-url="/empleado/loginEmpleado" default-target-url="/empleado/inicio" authentication-failure-url="/empleado/failEmpleado" />
-        <form-login login-page="/admin" login-processing-url="/quadrum/loginQuadrum" default-target-url="/quadrum/inicio" authentication-failure-url="/quadrum/failEmpleado" />
+        <form-login login-page="/" login-processing-url="/empresa/loginEmpresa" default-target-url="/empresa/inicio" authentication-failure-url="/failEmpresa"/>
+        <form-login login-page="/" login-processing-url="/empleado/loginEmpleado" default-target-url="/empleado/inicio" authentication-failure-url="/failEmpleado" />
+        <form-login login-page="/admin" login-processing-url="/quadrum/loginQuadrum" default-target-url="/quadrum/inicio" authentication-failure-url="/failEmpleado" />
         <logout invalidate-session="true" logout-success-url="/"/>
+        <!--
         <session-management >
             <concurrency-control max-sessions="2" />
         </session-management>
+        !-->
+        
     </http>
 
     <beans:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
@@ -42,12 +45,14 @@
     </beans:bean>
 
     <authentication-manager>
+        
         <authentication-provider>
             <password-encoder ref="encoder" />
             <jdbc-user-service data-source-ref="dataSource"
                                users-by-username-query="SELECT user_name,password,enable FROM usuario WHERE user_name=?"
                                authorities-by-username-query="SELECT usuario, rol FROM rol_usuario WHERE usuario=?" />
         </authentication-provider>
+        
     </authentication-manager>
     
 
