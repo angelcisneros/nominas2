@@ -14,29 +14,30 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import lombok.Getter;import lombok.NoArgsConstructor;import lombok.Setter;
 /**
  *
  * @author vcisneros
  */
 @Entity
-@Table(name = "admin", catalog = "nomifast")
+@Table(name = "administrador", catalog = "nomifast")
 @AllArgsConstructor
 @NoArgsConstructor
-public @Data class Administrador implements Serializable {
+public class Administrador implements Serializable {
     
     @Id
     @Column(name = "id", unique = true, nullable = false)
-    private int id;
+    @Getter @Setter private int id;
     
     @Column(name = "puesto", length = 45)
-    private String correo;
+    @Getter @Setter private String puesto;
     
+    @Valid
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="usuario", nullable=false)
-    private Usuario usuario;
+    @Getter @Setter private Usuario usuario;
    
 }

@@ -54,12 +54,12 @@ public class EmpleadoServicioImpl implements EmpleadoServicio {
 
     @Override
     public List<Empleado> buscarTodos() {
-        return empleadoRepositorio.buscarTodos();
+        return empleadoRepositorio.buscarTodos(Empleado.class);
     }
 
     @Override
-    public String eliminar(Integer id) {
-       Empleado empleado = empleadoRepositorio.buscarPorId(id);
+    public String eliminar(String id) {
+       Empleado empleado = empleadoRepositorio.buscarPorId(Empleado.class, id);
        if (empleadoRepositorio.eliminar(empleado)) {
             return DELETE_CORRECT + ALUMNO_CLASE;
         }
@@ -67,8 +67,8 @@ public class EmpleadoServicioImpl implements EmpleadoServicio {
     }
 
     @Override
-    public Empleado buscarPorId(Integer id) {
-       return empleadoRepositorio.buscarPorId(id);
+    public Empleado buscarPorId(String id) {
+       return empleadoRepositorio.buscarPorId(Empleado.class, id);
     }
     
 }

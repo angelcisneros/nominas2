@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/nomifast</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">admin</property>
+    <mapping class="com.quadrum.nominas2.entidades.Sucursal"/>
+    <mapping class="com.quadrum.nominas2.entidades.Banco"/>
+    <mapping class="com.quadrum.nominas2.entidades.RegimenFiscal"/>
+    <mapping class="com.quadrum.nominas2.entidades.RegimenContratacion"/>
+    <mapping class="com.quadrum.nominas2.entidades.PeriodicidadPago"/>
+    <mapping class="com.quadrum.nominas2.entidades.Recibo"/>
+    <mapping class="com.quadrum.nominas2.entidades.InformacionOpcional"/>
+    <mapping class="com.quadrum.nominas2.entidades.PercepcionEmpresaId"/>
+    <mapping class="com.quadrum.nominas2.entidades.Empresa"/>
+    <mapping class="com.quadrum.nominas2.entidades.Percepcion"/>
+    <mapping class="com.quadrum.nominas2.entidades.Deduccion"/>
+    <mapping class="com.quadrum.nominas2.entidades.RiesgoPuesto"/>
+    <mapping class="com.quadrum.nominas2.entidades.Empleado"/>
+    <mapping class="com.quadrum.nominas2.entidades.DeduccionEmpresaId"/>
+    <mapping class="com.quadrum.nominas2.entidades.DeduccionEmpresa"/>
+    <mapping class="com.quadrum.nominas2.entidades.Domicilio"/>
+    <mapping class="com.quadrum.nominas2.entidades.PercepcionEmpresa"/>
+  </session-factory>
+</hibernate-configuration>

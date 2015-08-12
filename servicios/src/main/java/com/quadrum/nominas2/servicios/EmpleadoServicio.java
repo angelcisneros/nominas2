@@ -16,8 +16,8 @@ public interface EmpleadoServicio{
     String agregar(Empleado empleado);
     String actualizar(Empleado empleado);
     String eliminar(Empleado empleado);
-    String eliminar(Integer id);
+    String eliminar(String id);
     
-    Empleado buscarPorId(Integer id);
+    Empleado buscarPorId(String id);
     List<Empleado> buscarTodos();
 }

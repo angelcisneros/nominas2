@@ -54,12 +54,12 @@ public class DeduccionServicioImpl implements DeduccionServicio {
 
     @Override
     public List<Deduccion> buscarTodos() {
-        return deduccionRepositorio.buscarTodos();
+        return deduccionRepositorio.buscarTodos(Deduccion.class);
     }
 
     @Override
     public String eliminar(Integer id) {
-       Deduccion deduccion = deduccionRepositorio.buscarPorId(id);
+       Deduccion deduccion = deduccionRepositorio.buscarPorId(Deduccion.class, id);
        if (deduccionRepositorio.eliminar(deduccion)) {
             return DELETE_CORRECT + ALUMNO_CLASE;
         }
@@ -68,7 +68,7 @@ public class DeduccionServicioImpl implements DeduccionServicio {
 
     @Override
     public Deduccion buscarPorId(Integer id) {
-       return deduccionRepositorio.buscarPorId(id);
+       return deduccionRepositorio.buscarPorId(Deduccion.class, id);
     }
     
 }

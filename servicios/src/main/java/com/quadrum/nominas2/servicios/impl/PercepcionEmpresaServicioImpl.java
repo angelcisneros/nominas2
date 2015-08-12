@@ -7,6 +7,7 @@
 package com.quadrum.nominas2.servicios.impl;
 
 import com.quadrum.nominas2.entidades.PercepcionEmpresa;
+import com.quadrum.nominas2.entidades.PercepcionEmpresaId;
 import com.quadrum.nominas2.repositorios.PercepcionEmpresaRepositorio;
 import com.quadrum.nominas2.servicios.PercepcionEmpresaServicio;
 import static com.quadrum.nominas2.servicios.util.MensajesCrud.ADD_CORRECT;
@@ -54,12 +55,12 @@ public class PercepcionEmpresaServicioImpl implements PercepcionEmpresaServicio 
 
     @Override
     public List<PercepcionEmpresa> buscarTodos() {
-        return percepcionEmpresaRepositorio.buscarTodos();
+        return percepcionEmpresaRepositorio.buscarTodos(PercepcionEmpresa.class);
     }
 
     @Override
-    public String eliminar(Integer id) {
-       PercepcionEmpresa percepcionEmpresa = percepcionEmpresaRepositorio.buscarPorId(id);
+    public String eliminar(PercepcionEmpresaId id) {
+       PercepcionEmpresa percepcionEmpresa = percepcionEmpresaRepositorio.buscarPorId(PercepcionEmpresa.class, id);
        if (percepcionEmpresaRepositorio.eliminar(percepcionEmpresa)) {
             return DELETE_CORRECT + ALUMNO_CLASE;
         }
@@ -67,8 +68,8 @@ public class PercepcionEmpresaServicioImpl implements PercepcionEmpresaServicio 
     }
 
     @Override
-    public PercepcionEmpresa buscarPorId(Integer id) {
-       return percepcionEmpresaRepositorio.buscarPorId(id);
+    public PercepcionEmpresa buscarPorId(PercepcionEmpresaId id) {
+       return percepcionEmpresaRepositorio.buscarPorId(PercepcionEmpresa.class, id);
     }
     
 }

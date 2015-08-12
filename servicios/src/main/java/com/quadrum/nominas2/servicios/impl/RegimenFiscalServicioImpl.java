@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.quadrum.nominas2.servicios.impl;
 
 import com.quadrum.nominas2.entidades.RegimenFiscal;
@@ -24,11 +23,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class RegimenFiscalServicioImpl implements RegimenFiscalServicio {
 
-   @Autowired
+    @Autowired
     RegimenFiscalRepositorio regimenFiscalRepositorio;
     private static final String ALUMNO_CLASE = "un regimenFiscal.#";
-    
-     @Override
+
+    @Override
     public String agregar(RegimenFiscal regimenFiscal) {
         if (regimenFiscalRepositorio.agregar(regimenFiscal)) {
             return ADD_CORRECT + ALUMNO_CLASE;
@@ -54,13 +53,13 @@ public class RegimenFiscalServicioImpl implements RegimenFiscalServicio {
 
     @Override
     public List<RegimenFiscal> buscarTodos() {
-        return regimenFiscalRepositorio.buscarTodos();
+        return regimenFiscalRepositorio.buscarTodos(RegimenFiscal.class);
     }
 
     @Override
     public String eliminar(Integer id) {
-       RegimenFiscal regimenFiscal = regimenFiscalRepositorio.buscarPorId(id);
-       if (regimenFiscalRepositorio.eliminar(regimenFiscal)) {
+        RegimenFiscal regimenFiscal = regimenFiscalRepositorio.buscarPorId(RegimenFiscal.class, id);
+        if (regimenFiscalRepositorio.eliminar(regimenFiscal)) {
             return DELETE_CORRECT + ALUMNO_CLASE;
         }
         return ERROR_HIBERNATE;
@@ -68,7 +67,7 @@ public class RegimenFiscalServicioImpl implements RegimenFiscalServicio {
 
     @Override
     public RegimenFiscal buscarPorId(Integer id) {
-       return regimenFiscalRepositorio.buscarPorId(id);
+        return regimenFiscalRepositorio.buscarPorId(RegimenFiscal.class, id);
     }
-    
+
 }

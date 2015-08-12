@@ -54,12 +54,12 @@ public class PercepcionServicioImpl implements PercepcionServicio {
 
     @Override
     public List<Percepcion> buscarTodos() {
-        return percepcionRepositorio.buscarTodos();
+        return percepcionRepositorio.buscarTodos(Percepcion.class);
     }
 
     @Override
     public String eliminar(Integer id) {
-       Percepcion percepcion = percepcionRepositorio.buscarPorId(id);
+       Percepcion percepcion = percepcionRepositorio.buscarPorId(Percepcion.class, id);
        if (percepcionRepositorio.eliminar(percepcion)) {
             return DELETE_CORRECT + ALUMNO_CLASE;
         }
@@ -68,7 +68,7 @@ public class PercepcionServicioImpl implements PercepcionServicio {
 
     @Override
     public Percepcion buscarPorId(Integer id) {
-       return percepcionRepositorio.buscarPorId(id);
+       return percepcionRepositorio.buscarPorId(Percepcion.class, id);
     }
     
 }

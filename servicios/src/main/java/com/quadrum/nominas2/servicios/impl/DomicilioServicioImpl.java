@@ -54,12 +54,12 @@ public class DomicilioServicioImpl implements DomicilioServicio {
 
     @Override
     public List<Domicilio> buscarTodos() {
-        return domicilioRepositorio.buscarTodos();
+        return domicilioRepositorio.buscarTodos(Domicilio.class);
     }
 
     @Override
     public String eliminar(Integer id) {
-       Domicilio domicilio = domicilioRepositorio.buscarPorId(id);
+       Domicilio domicilio = domicilioRepositorio.buscarPorId(Domicilio.class, id);
        if (domicilioRepositorio.eliminar(domicilio)) {
             return DELETE_CORRECT + ALUMNO_CLASE;
         }
@@ -68,7 +68,7 @@ public class DomicilioServicioImpl implements DomicilioServicio {
 
     @Override
     public Domicilio buscarPorId(Integer id) {
-       return domicilioRepositorio.buscarPorId(id);
+       return domicilioRepositorio.buscarPorId(Domicilio.class, id);
     }
     
 }

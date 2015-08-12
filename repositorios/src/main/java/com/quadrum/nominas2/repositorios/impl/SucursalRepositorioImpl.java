@@ -9,10 +9,8 @@ package com.quadrum.nominas2.repositorios.impl;
 import com.quadrum.nominas2.entidades.Sucursal;
 import com.quadrum.nominas2.repositorios.SucursalRepositorio;
 import java.util.List;
-import org.hibernate.HibernateException;
-import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.hibernate.sql.JoinType;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,71 +20,22 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Transactional
 @Repository
-public class SucursalRepositorioImpl implements SucursalRepositorio {
+public class SucursalRepositorioImpl  extends GenericDaoImpl<Sucursal, Integer> implements SucursalRepositorio {
 
-    @Autowired
-    SessionFactory sf;
-    
     @Override
-    public Boolean agregar(Sucursal sucursal) {
-        Boolean completo = null;
-        try {
-            sf.getCurrentSession().save(sucursal);
-            completo = true;
-        } catch (HibernateException he) {
-            he.printStackTrace();
-        }
-        return completo;
+    public Sucursal buscarPorMatriz(Integer empresa) {
+        return (Sucursal) sessionFactory.getCurrentSession().createCriteria(Sucursal.class)
+                .createAlias("empresa", "e", JoinType.INNER_JOIN)
+                .add(Restrictions.eq("e.id", empresa))
+                .add(Restrictions.eq("matriz", true))
+                .list().get(0);
     }
 
     @Override
-    public Boolean actualizar(Sucursal sucursal) {
-        Boolean completo = null;
-        try {
-            sf.getCurrentSession().update(sucursal);
-            completo = true;
-        } catch (HibernateException he) {
-            he.printStackTrace();
-        }
-        return completo;
+    public List<Sucursal> buscarPorEmpresa(Integer empresa) {
+        return sessionFactory.getCurrentSession().createCriteria(Sucursal.class)
+                .createAlias("empresa", "e", JoinType.INNER_JOIN)
+                .add(Restrictions.eq("e.id", empresa))
+                .list();
     }
-
-    @Override
-    public Boolean eliminar(Sucursal sucursal) {
-        Boolean completo = null;
-        try {
-            sf.getCurrentSession().delete(sucursal);
-            completo = true;
-        } catch (HibernateException he) {
-            he.printStackTrace();
-        }
-        return completo;
-    }
-
-    @Override
-    public Boolean eliminar(Integer id) {        
-        Boolean completo = null;
-        Sucursal sucursal = buscarPorId(id);
-        try {
-            sf.getCurrentSession().delete(sucursal);
-            completo = true;
-        } catch (HibernateException he) {
-            he.printStackTrace();
-        }
-        return completo;
-    }
-
-    @Override
-    public Sucursal buscarPorId(Integer id) {
-        return (Sucursal) sf.getCurrentSession().createCriteria(Sucursal.class)
-                .add(Restrictions.eq("id", id))
-                .uniqueResult();
-    }
-
-    @Override
-    public List<Sucursal> buscarTodos() {
-        return sf.getCurrentSession().createCriteria(Sucursal.class)
-               .list();
-    }
-    
 }

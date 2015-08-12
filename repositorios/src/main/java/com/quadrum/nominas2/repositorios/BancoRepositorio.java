@@ -7,18 +7,11 @@
 package com.quadrum.nominas2.repositorios;
 
 import com.quadrum.nominas2.entidades.Banco;
-import java.util.List;
 
 /**
  *
  * @author vcisneros
  */
-public interface BancoRepositorio{
-    Boolean agregar(Banco banco);
-    Boolean actualizar(Banco banco);
-    Boolean eliminar(Banco banco);
-    Boolean eliminar(Integer id);
-    
-    Banco buscarPorId(Integer id);
-    List<Banco> buscarTodos();
+public interface BancoRepositorio extends GenericDao<Banco, Integer>{
+   
 }

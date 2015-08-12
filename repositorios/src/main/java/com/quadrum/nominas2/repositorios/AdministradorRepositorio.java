@@ -7,19 +7,13 @@
 package com.quadrum.nominas2.repositorios;
 
 import com.quadrum.nominas2.entidades.Administrador;
-import java.util.List;
 
 /**
  *
  * @author vcisneros
  */
-public interface AdministradorRepositorio{
-    Boolean agregar(Administrador admin);
-    Boolean actualizar(Administrador admin);
-    Boolean eliminar(Administrador admin);
-    Boolean eliminar(Integer id);
+public interface AdministradorRepositorio extends GenericDao<Administrador, Integer>{
     
-    Administrador buscarPorId(Integer id);
     Administrador buscarPorCorreo(String correo);
-    List<Administrador> buscarTodos();
+    
 }

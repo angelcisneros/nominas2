@@ -7,6 +7,7 @@
 package com.quadrum.nominas2.servicios;
 
 import com.quadrum.nominas2.entidades.DeduccionEmpresa;
+import com.quadrum.nominas2.entidades.DeduccionEmpresaId;
 import java.util.List;
 
 /**
@@ -17,8 +18,8 @@ public interface DeduccionEmpresaServicio{
     String agregar(DeduccionEmpresa deduccionEmpresa);
     String actualizar(DeduccionEmpresa deduccionEmpresa);
     String eliminar(DeduccionEmpresa deduccionEmpresa);
-    String eliminar(Integer id);
+    String eliminar(DeduccionEmpresaId id);
     
-    DeduccionEmpresa buscarPorId(Integer id);
+    DeduccionEmpresa buscarPorId(DeduccionEmpresaId id);
     List<DeduccionEmpresa> buscarTodos();
 }

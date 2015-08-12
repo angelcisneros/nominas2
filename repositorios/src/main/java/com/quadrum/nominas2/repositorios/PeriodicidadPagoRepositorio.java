@@ -7,18 +7,10 @@
 package com.quadrum.nominas2.repositorios;
 
 import com.quadrum.nominas2.entidades.PeriodicidadPago;
-import java.util.List;
 
 /**
  *
  * @author vcisneros
  */
-public interface PeriodicidadPagoRepositorio{
-    Boolean agregar(PeriodicidadPago periodicidadPago);
-    Boolean actualizar(PeriodicidadPago periodicidadPago);
-    Boolean eliminar(PeriodicidadPago periodicidadPago);
-    Boolean eliminar(Integer id);
-    
-    PeriodicidadPago buscarPorId(Integer id);
-    List<PeriodicidadPago> buscarTodos();
+public interface PeriodicidadPagoRepositorio extends GenericDao<PeriodicidadPago, Integer>{
 }

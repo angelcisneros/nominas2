@@ -8,6 +8,8 @@ package com.quadrum.nominas2.servicios;
 
 import com.quadrum.nominas2.entidades.Sucursal;
 import java.util.List;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -20,5 +22,8 @@ public interface SucursalServicio{
     String eliminar(Integer id);
     
     Sucursal buscarPorId(Integer id);
+    Sucursal buscarMatriz(Integer empresa);
     List<Sucursal> buscarTodos();
+    List<Sucursal> buscarPorEmpresa(Integer empresa);
+    List<ObjectError> validarCertificados(Sucursal sucursal, MultipartFile cer, MultipartFile ky);
 }

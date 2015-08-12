@@ -3,7 +3,6 @@
     Created on : 22/06/2015, 01:43:15 PM
     Author     : vcisneros
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -19,7 +18,6 @@
         <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="../dist/js/jquery.mmenu.min.all.js"></script>
-        <script type="text/javascript" src="../js/menu.js"></script>
         <script type="text/javascript">
             $(function() {
                 $('nav#menu').mmenu();

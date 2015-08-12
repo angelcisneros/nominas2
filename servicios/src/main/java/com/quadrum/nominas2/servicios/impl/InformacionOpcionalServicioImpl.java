@@ -54,12 +54,12 @@ public class InformacionOpcionalServicioImpl implements InformacionOpcionalServi
 
     @Override
     public List<InformacionOpcional> buscarTodos() {
-        return informacionOpcionalRepositorio.buscarTodos();
+        return informacionOpcionalRepositorio.buscarTodos(InformacionOpcional.class);
     }
 
     @Override
     public String eliminar(Integer id) {
-       InformacionOpcional informacionOpcional = informacionOpcionalRepositorio.buscarPorId(id);
+       InformacionOpcional informacionOpcional = informacionOpcionalRepositorio.buscarPorId(InformacionOpcional.class, id);
        if (informacionOpcionalRepositorio.eliminar(informacionOpcional)) {
             return DELETE_CORRECT + ALUMNO_CLASE;
         }
@@ -68,7 +68,7 @@ public class InformacionOpcionalServicioImpl implements InformacionOpcionalServi
 
     @Override
     public InformacionOpcional buscarPorId(Integer id) {
-       return informacionOpcionalRepositorio.buscarPorId(id);
+       return informacionOpcionalRepositorio.buscarPorId(InformacionOpcional.class, id);
     }
     
 }

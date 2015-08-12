@@ -54,12 +54,12 @@ public class RiesgoPuestoServicioImpl implements RiesgoPuestoServicio {
 
     @Override
     public List<RiesgoPuesto> buscarTodos() {
-        return riesgoPuestoRepositorio.buscarTodos();
+        return riesgoPuestoRepositorio.buscarTodos(RiesgoPuestoRepositorio.class);
     }
 
     @Override
     public String eliminar(Integer id) {
-       RiesgoPuesto riesgoPuesto = riesgoPuestoRepositorio.buscarPorId(id);
+       RiesgoPuesto riesgoPuesto = riesgoPuestoRepositorio.buscarPorId(RiesgoPuestoRepositorio.class, id);
        if (riesgoPuestoRepositorio.eliminar(riesgoPuesto)) {
             return DELETE_CORRECT + ALUMNO_CLASE;
         }
@@ -68,7 +68,7 @@ public class RiesgoPuestoServicioImpl implements RiesgoPuestoServicio {
 
     @Override
     public RiesgoPuesto buscarPorId(Integer id) {
-       return riesgoPuestoRepositorio.buscarPorId(id);
+       return riesgoPuestoRepositorio.buscarPorId(RiesgoPuestoRepositorio.class, id);
     }
     
 }

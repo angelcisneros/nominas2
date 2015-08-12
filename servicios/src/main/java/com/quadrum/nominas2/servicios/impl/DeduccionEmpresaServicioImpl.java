@@ -7,6 +7,7 @@
 package com.quadrum.nominas2.servicios.impl;
 
 import com.quadrum.nominas2.entidades.DeduccionEmpresa;
+import com.quadrum.nominas2.entidades.DeduccionEmpresaId;
 import com.quadrum.nominas2.repositorios.DeduccionEmpresaRepositorio;
 import com.quadrum.nominas2.servicios.DeduccionEmpresaServicio;
 import static com.quadrum.nominas2.servicios.util.MensajesCrud.ADD_CORRECT;
@@ -54,12 +55,12 @@ public class DeduccionEmpresaServicioImpl implements DeduccionEmpresaServicio {
 
     @Override
     public List<DeduccionEmpresa> buscarTodos() {
-        return deduccionEmpresaRepositorio.buscarTodos();
+        return deduccionEmpresaRepositorio.buscarTodos(DeduccionEmpresa.class);
     }
 
     @Override
-    public String eliminar(Integer id) {
-       DeduccionEmpresa deduccionEmpresa = deduccionEmpresaRepositorio.buscarPorId(id);
+    public String eliminar(DeduccionEmpresaId id) {
+       DeduccionEmpresa deduccionEmpresa = deduccionEmpresaRepositorio.buscarPorId(DeduccionEmpresa.class, id);
        if (deduccionEmpresaRepositorio.eliminar(deduccionEmpresa)) {
             return DELETE_CORRECT + ALUMNO_CLASE;
         }
@@ -67,8 +68,8 @@ public class DeduccionEmpresaServicioImpl implements DeduccionEmpresaServicio {
     }
 
     @Override
-    public DeduccionEmpresa buscarPorId(Integer id) {
-       return deduccionEmpresaRepositorio.buscarPorId(id);
+    public DeduccionEmpresa buscarPorId(DeduccionEmpresaId id) {
+       return deduccionEmpresaRepositorio.buscarPorId(DeduccionEmpresa.class, id);
     }
     
 }

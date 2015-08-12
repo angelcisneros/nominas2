@@ -7,18 +7,10 @@
 package com.quadrum.nominas2.repositorios;
 
 import com.quadrum.nominas2.entidades.Empleado;
-import java.util.List;
 
 /**
  *
  * @author vcisneros
  */
-public interface EmpleadoRepositorio{
-    Boolean agregar(Empleado empleado);
-    Boolean actualizar(Empleado empleado);
-    Boolean eliminar(Empleado empleado);
-    Boolean eliminar(Integer id);
-    
-    Empleado buscarPorId(Integer id);
-    List<Empleado> buscarTodos();
+public interface EmpleadoRepositorio extends GenericDao<Empleado, String>{
 }

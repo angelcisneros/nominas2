@@ -54,12 +54,12 @@ public class AdministradorServicioImpl implements AdministradorServicio {
 
     @Override
     public List<Administrador> buscarTodos() {
-        return adminRepositorio.buscarTodos();
+        return adminRepositorio.buscarTodos(Administrador.class);
     }
 
     @Override
     public String eliminar(Integer id) {
-       Administrador admin = adminRepositorio.buscarPorId(id);
+       Administrador admin = adminRepositorio.buscarPorId(Administrador.class, id);
        if (adminRepositorio.eliminar(admin)) {
             return DELETE_CORRECT + ALUMNO_CLASE;
         }
@@ -68,7 +68,7 @@ public class AdministradorServicioImpl implements AdministradorServicio {
 
     @Override
     public Administrador buscarPorId(Integer id) {
-       return adminRepositorio.buscarPorId(id);
+       return adminRepositorio.buscarPorId(Administrador.class, id);
     }
 
     @Override

@@ -7,18 +7,10 @@
 package com.quadrum.nominas2.repositorios;
 
 import com.quadrum.nominas2.entidades.RegimenContratacion;
-import java.util.List;
 
 /**
  *
  * @author vcisneros
  */
-public interface RegimenContratacionRepositorio{
-    Boolean agregar(RegimenContratacion regimenContratacion);
-    Boolean actualizar(RegimenContratacion regimenContratacion);
-    Boolean eliminar(RegimenContratacion regimenContratacion);
-    Boolean eliminar(Integer id);
-    
-    RegimenContratacion buscarPorId(Integer id);
-    List<RegimenContratacion> buscarTodos();
+public interface RegimenContratacionRepositorio extends GenericDao<RegimenContratacion, Integer>{
 }

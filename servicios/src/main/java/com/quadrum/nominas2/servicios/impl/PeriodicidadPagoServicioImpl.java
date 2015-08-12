@@ -54,12 +54,12 @@ public class PeriodicidadPagoServicioImpl implements PeriodicidadPagoServicio {
 
     @Override
     public List<PeriodicidadPago> buscarTodos() {
-        return periodicidadPagoRepositorio.buscarTodos();
+        return periodicidadPagoRepositorio.buscarTodos(PeriodicidadPago.class);
     }
 
     @Override
     public String eliminar(Integer id) {
-       PeriodicidadPago periodicidadPago = periodicidadPagoRepositorio.buscarPorId(id);
+       PeriodicidadPago periodicidadPago = periodicidadPagoRepositorio.buscarPorId(PeriodicidadPago.class, id);
        if (periodicidadPagoRepositorio.eliminar(periodicidadPago)) {
             return DELETE_CORRECT + ALUMNO_CLASE;
         }
@@ -68,7 +68,7 @@ public class PeriodicidadPagoServicioImpl implements PeriodicidadPagoServicio {
 
     @Override
     public PeriodicidadPago buscarPorId(Integer id) {
-       return periodicidadPagoRepositorio.buscarPorId(id);
+       return periodicidadPagoRepositorio.buscarPorId(PeriodicidadPago.class, id);
     }
     
 }

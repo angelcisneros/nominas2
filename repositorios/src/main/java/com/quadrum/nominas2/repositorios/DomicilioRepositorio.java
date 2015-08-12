@@ -7,18 +7,10 @@
 package com.quadrum.nominas2.repositorios;
 
 import com.quadrum.nominas2.entidades.Domicilio;
-import java.util.List;
 
 /**
  *
  * @author vcisneros
  */
-public interface DomicilioRepositorio{
-    Boolean agregar(Domicilio domicilio);
-    Boolean actualizar(Domicilio domicilio);
-    Boolean eliminar(Domicilio domicilio);
-    Boolean eliminar(Integer id);
-    
-    Domicilio buscarPorId(Integer id);
-    List<Domicilio> buscarTodos();
+public interface DomicilioRepositorio extends GenericDao<Domicilio, Integer>{
 }

@@ -7,6 +7,7 @@
 package com.quadrum.nominas2.servicios;
 
 import com.quadrum.nominas2.entidades.PercepcionEmpresa;
+import com.quadrum.nominas2.entidades.PercepcionEmpresaId;
 import java.util.List;
 
 /**
@@ -17,8 +18,8 @@ public interface PercepcionEmpresaServicio{
     String agregar(PercepcionEmpresa percepcionEmpresa);
     String actualizar(PercepcionEmpresa percepcionEmpresa);
     String eliminar(PercepcionEmpresa percepcionEmpresa);
-    String eliminar(Integer id);
+    String eliminar(PercepcionEmpresaId id);
     
-    PercepcionEmpresa buscarPorId(Integer id);
+    PercepcionEmpresa buscarPorId(PercepcionEmpresaId id);
     List<PercepcionEmpresa> buscarTodos();
 }

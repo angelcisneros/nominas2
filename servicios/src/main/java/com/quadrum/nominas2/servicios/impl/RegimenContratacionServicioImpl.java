@@ -54,12 +54,12 @@ public class RegimenContratacionServicioImpl implements RegimenContratacionServi
 
     @Override
     public List<RegimenContratacion> buscarTodos() {
-        return regimenContratacionRepositorio.buscarTodos();
+        return regimenContratacionRepositorio.buscarTodos(RegimenContratacion.class);
     }
 
     @Override
     public String eliminar(Integer id) {
-       RegimenContratacion regimenContratacion = regimenContratacionRepositorio.buscarPorId(id);
+       RegimenContratacion regimenContratacion = regimenContratacionRepositorio.buscarPorId(RegimenContratacion.class, id);
        if (regimenContratacionRepositorio.eliminar(regimenContratacion)) {
             return DELETE_CORRECT + ALUMNO_CLASE;
         }
@@ -68,7 +68,7 @@ public class RegimenContratacionServicioImpl implements RegimenContratacionServi
 
     @Override
     public RegimenContratacion buscarPorId(Integer id) {
-       return regimenContratacionRepositorio.buscarPorId(id);
+       return regimenContratacionRepositorio.buscarPorId(RegimenContratacion.class, id);
     }
     
 }

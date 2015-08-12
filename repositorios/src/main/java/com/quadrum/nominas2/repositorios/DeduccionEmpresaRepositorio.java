@@ -7,18 +7,12 @@
 package com.quadrum.nominas2.repositorios;
 
 import com.quadrum.nominas2.entidades.DeduccionEmpresa;
-import java.util.List;
+import com.quadrum.nominas2.entidades.DeduccionEmpresaId;
 
 /**
  *
  * @author vcisneros
  */
-public interface DeduccionEmpresaRepositorio{
-    Boolean agregar(DeduccionEmpresa deduccionEmpresa);
-    Boolean actualizar(DeduccionEmpresa deduccionEmpresa);
-    Boolean eliminar(DeduccionEmpresa deduccionEmpresa);
-    Boolean eliminar(Integer id);
+public interface DeduccionEmpresaRepositorio extends GenericDao<DeduccionEmpresa, DeduccionEmpresaId>{
     
-    DeduccionEmpresa buscarPorId(Integer id);
-    List<DeduccionEmpresa> buscarTodos();
 }

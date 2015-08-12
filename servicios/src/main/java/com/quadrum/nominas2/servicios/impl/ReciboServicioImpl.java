@@ -54,12 +54,12 @@ public class ReciboServicioImpl implements ReciboServicio {
 
     @Override
     public List<Recibo> buscarTodos() {
-        return reciboRepositorio.buscarTodos();
+        return reciboRepositorio.buscarTodos(Recibo.class);
     }
 
     @Override
     public String eliminar(Integer id) {
-       Recibo recibo = reciboRepositorio.buscarPorId(id);
+       Recibo recibo = reciboRepositorio.buscarPorId(Recibo.class, id);
        if (reciboRepositorio.eliminar(recibo)) {
             return DELETE_CORRECT + ALUMNO_CLASE;
         }
@@ -68,7 +68,7 @@ public class ReciboServicioImpl implements ReciboServicio {
 
     @Override
     public Recibo buscarPorId(Integer id) {
-       return reciboRepositorio.buscarPorId(id);
+       return reciboRepositorio.buscarPorId(Recibo.class, id);
     }
     
 }

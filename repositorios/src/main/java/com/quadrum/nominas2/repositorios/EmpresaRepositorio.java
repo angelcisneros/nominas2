@@ -7,18 +7,12 @@
 package com.quadrum.nominas2.repositorios;
 
 import com.quadrum.nominas2.entidades.Empresa;
-import java.util.List;
 
 /**
  *
  * @author vcisneros
  */
-public interface EmpresaRepositorio{
-    Boolean agregar(Empresa empresa);
-    Boolean actualizar(Empresa empresa);
-    Boolean eliminar(Empresa empresa);
-    Boolean eliminar(Integer id);
+public interface EmpresaRepositorio extends GenericDao<Empresa, Integer>{
     
-    Empresa buscarPorId(Integer id);
-    List<Empresa> buscarTodos();
+    Empresa buscarPorUsuario(String usuario);
 }

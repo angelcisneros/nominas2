@@ -54,12 +54,12 @@ public class BancoServicioImpl implements BancoServicio {
 
     @Override
     public List<Banco> buscarTodos() {
-        return bancoRepositorio.buscarTodos();
+        return bancoRepositorio.buscarTodos(Banco.class);
     }
 
     @Override
     public String eliminar(Integer id) {
-       Banco banco = bancoRepositorio.buscarPorId(id);
+       Banco banco = bancoRepositorio.buscarPorId(Banco.class, id);
        if (bancoRepositorio.eliminar(banco)) {
             return DELETE_CORRECT + ALUMNO_CLASE;
         }
@@ -68,7 +68,7 @@ public class BancoServicioImpl implements BancoServicio {
 
     @Override
     public Banco buscarPorId(Integer id) {
-       return bancoRepositorio.buscarPorId(id);
+       return bancoRepositorio.buscarPorId(Banco.class, id);
     }
     
 }

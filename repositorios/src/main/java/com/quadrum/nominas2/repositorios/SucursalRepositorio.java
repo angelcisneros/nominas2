@@ -13,12 +13,8 @@ import java.util.List;
  *
  * @author vcisneros
  */
-public interface SucursalRepositorio{
-    Boolean agregar(Sucursal sucursal);
-    Boolean actualizar(Sucursal sucursal);
-    Boolean eliminar(Sucursal sucursal);
-    Boolean eliminar(Integer id);
+public interface SucursalRepositorio extends GenericDao<Sucursal, Integer>{
     
-    Sucursal buscarPorId(Integer id);
-    List<Sucursal> buscarTodos();
+    Sucursal buscarPorMatriz(Integer empresa);
+    List<Sucursal> buscarPorEmpresa(Integer empresa);
 }

@@ -15,4 +15,11 @@ public class Llave {
     public static final String EMPRESA = "EMPRESA";
     public static final String EMPLEADO = "EMPLEADO";
     public static final String QUADRUM = "QUADRUM";
+    
+    public static final String P_EMPRESA = "empresa/";
+    public static final String P_EMPLEADO = "empleado/";
+    public static final String P_QUADRUM = "quadrum/";
+    
+    
+    
 }

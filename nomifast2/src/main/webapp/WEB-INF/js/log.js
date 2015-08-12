@@ -13,22 +13,50 @@ $(document).on('ready', function() {
         $('#log-empleado').modal('show');
     });
 
-
-    $('#logEmpresa').on('click', function() {
-        $.ajax({
-            type: 'POST',
-            url: "loginEmpresa/",
-            dataType: 'text',
-            data: $('#loginEmpresaForm').serialize(),
-            success: function(respuesta) {
-                
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-
-            }
-        });
+    $('#registrarEmpresa').on('click', function() {
+        cerrarPopUps();
+        $('#newEmpresa').modal('show');
     });
 
+    $('#registrarEmpresaButton').on('click', function() {
+        if (validar()) {
+            $.ajax({
+                type: 'POST',
+                url: "registrarEmpresa",
+                dataType: 'text',
+                data: $('#empresaForm').serialize(),
+                success: function(respuesta) {
+                    var respuesta = respuesta.split('#');
+                    $('#tituloPopUp').text(respuesta[0]);
+                    $('#tituloContenidoPopUp').text(respuesta[1]);
+                    $('#contenidoPopUp').text(respuesta[2]);
+                    $('#popUpRespuesta').modal('show');
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    $('#tituloPopUp').text('Ups!...');
+                    $('#contenidoPopUp').text('Estmos experiemntando problemas pero ya estamos trabajhanod en ellos.');
+                    $('#popUpRespuesta').modal('show');
+                }
+            });
+        }
+    });
 });
-
-
+function cerrarPopUps() {
+    $('.fade modal').modal('hide');
+}
+function validar() {
+    var requisitos = 0;
+    if (validarCorreo($('#mailEmpresa'))) {
+        requisitos++;
+    }
+    if (validarPasswordIguales($('#passwordEmpresa'), $('#passwordEmpresaConfirmación'))) {
+        requisitos++;
+    }
+    if (validarNombre($('#nombreEmpresa'))) {
+        requisitos++;
+    }
+    if (validarOption($('#regimenFiscal'))) {
+        requisitos++;
+    }
+    return requisitos === 4;
+}

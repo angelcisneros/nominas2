@@ -8,11 +8,7 @@ package com.quadrum.nominas2.repositorios.impl;
 
 import com.quadrum.nominas2.entidades.Administrador;
 import com.quadrum.nominas2.repositorios.AdministradorRepositorio;
-import java.util.List;
-import org.hibernate.HibernateException;
-import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,76 +18,11 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Transactional
 @Repository
-public class AdministradorRepositorioImpl implements AdministradorRepositorio {
-
-    @Autowired
-    SessionFactory sf;
+public class AdministradorRepositorioImpl extends GenericDaoImpl<Administrador, Integer> implements AdministradorRepositorio {
     
     @Override
-    public Boolean agregar(Administrador admin) {
-        Boolean completo = null;
-        try {
-            sf.getCurrentSession().save(admin);
-            completo = true;
-        } catch (HibernateException he) {
-            he.printStackTrace();
-        }
-        return completo;
-    }
-
-    @Override
-    public Boolean actualizar(Administrador admin) {
-        Boolean completo = null;
-        try {
-            sf.getCurrentSession().update(admin);
-            completo = true;
-        } catch (HibernateException he) {
-            he.printStackTrace();
-        }
-        return completo;
-    }
-
-    @Override
-    public Boolean eliminar(Administrador admin) {
-        Boolean completo = null;
-        try {
-            sf.getCurrentSession().delete(admin);
-            completo = true;
-        } catch (HibernateException he) {
-            he.printStackTrace();
-        }
-        return completo;
-    }
-
-    @Override
-    public Boolean eliminar(Integer id) {        
-        Boolean completo = null;
-        Administrador admin = buscarPorId(id);
-        try {
-            sf.getCurrentSession().delete(admin);
-            completo = true;
-        } catch (HibernateException he) {
-            he.printStackTrace();
-        }
-        return completo;
-    }
-
-    @Override
-    public Administrador buscarPorId(Integer id) {
-        return (Administrador) sf.getCurrentSession().createCriteria(Administrador.class)
-                .add(Restrictions.eq("id", id))
-                .uniqueResult();
-    }
-
-    @Override
-    public List<Administrador> buscarTodos() {
-        return sf.getCurrentSession().createCriteria(Administrador.class)
-               .list();
-    }
-
-    @Override
     public Administrador buscarPorCorreo(String correo) {
-        return (Administrador) sf.getCurrentSession().createCriteria(Administrador.class)
+        return (Administrador) sessionFactory.getCurrentSession().createCriteria(Administrador.class)
                 .add(Restrictions.eq("correo", correo))
                 .uniqueResult();
     }

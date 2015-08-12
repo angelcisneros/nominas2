@@ -10,7 +10,7 @@
     
 
     
-    <context:component-scan base-package="com.quadrum.nominas2.controller"/>
+    <context:component-scan base-package="com.quadrum.nominas2"/>
     <global-method-security  secured-annotations="enabled"/>
 
     <http auto-config="true" use-expressions="true" create-session="ifRequired">
@@ -26,11 +26,11 @@
        
         
         -->
-        <intercept-url pattern="/empresa/*" access="hasRole('ROL_EMPRESA', 'ROL_SUCURSAL')"/>
+        <intercept-url pattern="/empresa/*" access="hasRole('ROL_EMPRESA')"/>
         <intercept-url pattern="/quadrum/*" access="hasRole('ROL_ADMIN')"/>
         <form-login login-page="/" login-processing-url="/empresa/loginEmpresa" default-target-url="/empresa/inicio" authentication-failure-url="/failEmpresa"/>
         <form-login login-page="/" login-processing-url="/empleado/loginEmpleado" default-target-url="/empleado/inicio" authentication-failure-url="/failEmpleado" />
-        <form-login login-page="/admin" login-processing-url="/quadrum/loginQuadrum" default-target-url="/quadrum/inicio" authentication-failure-url="/failEmpleado" />
+        <form-login login-page="quadrum/" login-processing-url="/quadrum/loginQuadrum" default-target-url="/quadrum/inicio" authentication-failure-url="/failEmpleado" />
         <logout invalidate-session="true" logout-success-url="/"/>
         <!--
         <session-management >

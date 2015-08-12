@@ -5,77 +5,91 @@
  */
 package com.quadrum.nominas2.controller.empresa;
 
-import org.springframework.security.access.annotation.Secured;
+;
+import com.quadrum.nominas2.entidades.Empresa;
+import com.quadrum.nominas2.servicios.EmpresaServicio;
+import static com.quadrum.nominas2.servicios.util.Llave.EMPRESA;
+import static com.quadrum.nominas2.servicios.util.Llave.P_EMPRESA;
+import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
  * @author vcisneros
  */
 @Controller
-@RequestMapping(value = "empresa/")
+@RequestMapping(value = P_EMPRESA)
 public class HomeEmpresaController {
 
+    @Autowired
+    EmpresaServicio empresaServicio;
+    
     @RequestMapping(value = "*")
     public String error404(Model model) {
         return "templates/404";
     }
 
     @RequestMapping(value = "inicio")
-    public String inicio(Model model) {
-        return "empresaTemplates/inicio";
+    public String inicio(Model model, HttpSession session) {
+        Authentication a = SecurityContextHolder.getContext().getAuthentication();
+        if("anonymousUser".equals(a.getPrincipal())){
+            model.addAttribute("url", "../");
+            return "util/redireccionador";
+        }
+        User user = (User) a.getPrincipal();
+        Empresa empresa = empresaServicio.buscarPorUsuario(user.getUsername());
+        session.setAttribute(EMPRESA, empresa);
+        return empresaServicio.regresaVista(empresa);
     }
 
-    @Secured("ROLE_ADMIN")
+
     @RequestMapping(value = "empleados")
     public String empleados(Model model) {
 
-        return "empresa/empleados";
+        return P_EMPRESA + "empleados";
     }
 
-    @RequestMapping(value = "sucursales")
-    public String sucursales(Model model) {
-
-        return "empresa/sucursales";
-    }
+   
 
     @RequestMapping(value = "recibos")
     public String recibos(Model model) {
 
-        return "empresa/recibos";
+        return P_EMPRESA + "recibos";
     }
 
     @RequestMapping(value = "timbrar")
     public String timbrar(Model model) {
 
-        return "empresa/timbrar";
+        return P_EMPRESA + "timbrar";
     }
 
     @RequestMapping(value = "cancelar")
     public String cancelar(Model model) {
 
-        return "empresa/cancelar";
+        return P_EMPRESA + "cancelar";
     }
 
     @RequestMapping(value = "logo")
     public String logo(Model model) {
 
-        return "empresa/logo";
+        return P_EMPRESA + "logo";
     }
 
     @RequestMapping(value = "percepciones")
     public String percepciones(Model model) {
 
-        return "empresa/percepciones";
+        return P_EMPRESA + "percepciones";
     }
 
     @RequestMapping(value = "deducciones")
     public String deducciones(Model model) {
 
-        return "empresa/deducciones";
+        return P_EMPRESA + "deducciones";
     }
-
 }

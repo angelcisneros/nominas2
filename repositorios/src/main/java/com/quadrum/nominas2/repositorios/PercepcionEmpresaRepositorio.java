@@ -7,18 +7,12 @@
 package com.quadrum.nominas2.repositorios;
 
 import com.quadrum.nominas2.entidades.PercepcionEmpresa;
-import java.util.List;
+import com.quadrum.nominas2.entidades.PercepcionEmpresaId;
 
 /**
  *
  * @author vcisneros
  */
-public interface PercepcionEmpresaRepositorio{
-    Boolean agregar(PercepcionEmpresa percepcionEmpresa);
-    Boolean actualizar(PercepcionEmpresa percepcionEmpresa);
-    Boolean eliminar(PercepcionEmpresa percepcionEmpresa);
-    Boolean eliminar(Integer id);
+public interface PercepcionEmpresaRepositorio extends GenericDao<PercepcionEmpresa, PercepcionEmpresaId>{
     
-    PercepcionEmpresa buscarPorId(Integer id);
-    List<PercepcionEmpresa> buscarTodos();
 }

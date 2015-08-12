@@ -7,7 +7,7 @@
 <div class="row">
     <div class="form-inline col-xs-12 col-sm-12 col-lg-9 col-md-9">
         <div class="input-group">
-            <span class="input-group-addon" id="basic-addon1">Búsquedas:</span>
+            <span class="input-group-addon" id="basic-addon1"><i class="fa fa-fw s fa-search"></i>Búsquedas:</span>
             <select id="busquedas" class="form-control" aria-describedby="basic-addon1">
                 <option label="--TODOS--" value="0">--TODOS--</option>
                 <option label="Por Fecha de Pago" value="1" >Por Fecha de Pago</option>

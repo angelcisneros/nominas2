@@ -7,18 +7,10 @@
 package com.quadrum.nominas2.repositorios;
 
 import com.quadrum.nominas2.entidades.InformacionOpcional;
-import java.util.List;
 
 /**
  *
  * @author vcisneros
  */
-public interface InformacionOpcionalRepositorio{
-    Boolean agregar(InformacionOpcional informacionOpcional);
-    Boolean actualizar(InformacionOpcional informacionOpcional);
-    Boolean eliminar(InformacionOpcional informacionOpcional);
-    Boolean eliminar(Integer id);
-    
-    InformacionOpcional buscarPorId(Integer id);
-    List<InformacionOpcional> buscarTodos();
+public interface InformacionOpcionalRepositorio extends GenericDao<InformacionOpcional, Integer>{
 }

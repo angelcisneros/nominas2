@@ -16,9 +16,14 @@ import java.util.List;
 public interface EmpresaServicio{
     String agregar(Empresa empresa);
     String actualizar(Empresa empresa);
+    String actualizarPerfil(Empresa empresa, Empresa antigua);
     String eliminar(Empresa empresa);
     String eliminar(Integer id);
     
     Empresa buscarPorId(Integer id);
     List<Empresa> buscarTodos();
+    Empresa buscarPorUsuario(String usuario);
+
+    boolean confirmaLink(String usuario, String confirmacion, String opcion);
+    String regresaVista(Empresa empresa);
 }
