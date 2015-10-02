@@ -3,72 +3,66 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.quadrum.nominas2.servicios.impl;
-
-import com.quadrum.nominas2.entidades.Percepcion;
-import com.quadrum.nominas2.repositorios.PercepcionRepositorio;
-import com.quadrum.nominas2.servicios.PercepcionServicio;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.ADD_CORRECT;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.DELETE_CORRECT;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.ERROR_HIBERNATE;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.UPDATE_CORRECT;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  *
  * @author vcisneros
  */
+import com.quadrum.nominas2.entidades.Percepcion;
+import com.quadrum.nominas2.repositorios.PercepcionRepositorio;
+import com.quadrum.nominas2.servicios.PercepcionServicio;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 @Service
 public class PercepcionServicioImpl implements PercepcionServicio {
 
-   @Autowired
+    @Autowired
     PercepcionRepositorio percepcionRepositorio;
     private static final String ALUMNO_CLASE = "un percepcion.#";
-    
-     @Override
+
+    @Override
     public String agregar(Percepcion percepcion) {
-        if (percepcionRepositorio.agregar(percepcion)) {
-            return ADD_CORRECT + ALUMNO_CLASE;
+        if (this.percepcionRepositorio.agregar(percepcion)) {
+            return "Correcto...#Se ha agregado un percepcion.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
     public String actualizar(Percepcion percepcion) {
-        if (percepcionRepositorio.actualizar(percepcion)) {
-            return UPDATE_CORRECT + ALUMNO_CLASE;
+        if (this.percepcionRepositorio.actualizar(percepcion)) {
+            return "Correcto...#Se ha actualizado un percepcion.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
     public String eliminar(Percepcion percepcion) {
-        if (percepcionRepositorio.eliminar(percepcion)) {
-            return DELETE_CORRECT + ALUMNO_CLASE;
+        if (this.percepcionRepositorio.eliminar(percepcion)) {
+            return "Correcto...#Se ha eliminado un percepcion.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
     public List<Percepcion> buscarTodos() {
-        return percepcionRepositorio.buscarTodos(Percepcion.class);
+        return this.percepcionRepositorio.buscarTodos(Percepcion.class);
     }
 
     @Override
     public String eliminar(Integer id) {
-       Percepcion percepcion = percepcionRepositorio.buscarPorId(Percepcion.class, id);
-       if (percepcionRepositorio.eliminar(percepcion)) {
-            return DELETE_CORRECT + ALUMNO_CLASE;
+        Percepcion percepcion = (Percepcion) this.percepcionRepositorio.buscarPorId(Percepcion.class, id);
+        if (this.percepcionRepositorio.eliminar(percepcion)) {
+            return "Correcto...#Se ha eliminado un percepcion.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
     public Percepcion buscarPorId(Integer id) {
-       return percepcionRepositorio.buscarPorId(Percepcion.class, id);
+        return (Percepcion) this.percepcionRepositorio.buscarPorId(Percepcion.class, id);
     }
-    
 }

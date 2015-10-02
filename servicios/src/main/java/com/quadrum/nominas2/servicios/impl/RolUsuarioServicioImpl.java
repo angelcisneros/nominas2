@@ -3,74 +3,67 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.quadrum.nominas2.servicios.impl;
-
-import com.quadrum.nominas2.entidades. RolUsuario;
-import com.quadrum.nominas2.entidades. RolUsuarioId;
-import com.quadrum.nominas2.repositorios. RolUsuarioRepositorio;
-import com.quadrum.nominas2.servicios.RolUsuarioServicio;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.ADD_CORRECT;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.DELETE_CORRECT;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.ERROR_HIBERNATE;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.UPDATE_CORRECT;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  *
  * @author vcisneros
  */
+import com.quadrum.nominas2.entidades.RolUsuario;
+import com.quadrum.nominas2.entidades.RolUsuarioId;
+import com.quadrum.nominas2.repositorios.RolUsuarioRepositorio;
+import com.quadrum.nominas2.servicios.RolUsuarioServicio;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 @Service
-public class RolUsuarioServicioImpl implements  RolUsuarioServicio {
+public class RolUsuarioServicioImpl implements RolUsuarioServicio {
 
-   @Autowired
-     RolUsuarioRepositorio rolUsuarioRepositorio;
+    @Autowired
+    RolUsuarioRepositorio rolUsuarioRepositorio;
     private static final String ALUMNO_CLASE = "un rolUsuario.#";
-    
-     @Override
-    public String agregar( RolUsuario rolUsuario) {
-        if (rolUsuarioRepositorio.agregar(rolUsuario)) {
-            return ADD_CORRECT + ALUMNO_CLASE;
+
+    @Override
+    public String agregar(RolUsuario rolUsuario) {
+        if (this.rolUsuarioRepositorio.agregar(rolUsuario)) {
+            return "Correcto...#Se ha agregado un rolUsuario.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
-    public String actualizar( RolUsuario rolUsuario) {
-        if (rolUsuarioRepositorio.actualizar(rolUsuario)) {
-            return UPDATE_CORRECT + ALUMNO_CLASE;
+    public String actualizar(RolUsuario rolUsuario) {
+        if (this.rolUsuarioRepositorio.actualizar(rolUsuario)) {
+            return "Correcto...#Se ha actualizado un rolUsuario.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
-    public String eliminar( RolUsuario rolUsuario) {
-        if (rolUsuarioRepositorio.eliminar(rolUsuario)) {
-            return DELETE_CORRECT + ALUMNO_CLASE;
+    public String eliminar(RolUsuario rolUsuario) {
+        if (this.rolUsuarioRepositorio.eliminar(rolUsuario)) {
+            return "Correcto...#Se ha eliminado un rolUsuario.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
-    public List< RolUsuario> buscarTodos() {
-        return rolUsuarioRepositorio.buscarTodos( RolUsuario.class);
+    public List<RolUsuario> buscarTodos() {
+        return this.rolUsuarioRepositorio.buscarTodos(RolUsuario.class);
     }
 
     @Override
     public String eliminar(RolUsuarioId id) {
-        RolUsuario rolUsuario = rolUsuarioRepositorio.buscarPorId( RolUsuarioId.class, id);
-       if (rolUsuarioRepositorio.eliminar(rolUsuario)) {
-            return DELETE_CORRECT + ALUMNO_CLASE;
+        RolUsuario rolUsuario = (RolUsuario) this.rolUsuarioRepositorio.buscarPorId(RolUsuarioId.class, id);
+        if (this.rolUsuarioRepositorio.eliminar(rolUsuario)) {
+            return "Correcto...#Se ha eliminado un rolUsuario.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
-    public  RolUsuario buscarPorId(RolUsuarioId id) {
-       return rolUsuarioRepositorio.buscarPorId( RolUsuarioId.class, id);
+    public RolUsuario buscarPorId(RolUsuarioId id) {
+        return (RolUsuario) this.rolUsuarioRepositorio.buscarPorId(RolUsuarioId.class, id);
     }
-
-    
 }

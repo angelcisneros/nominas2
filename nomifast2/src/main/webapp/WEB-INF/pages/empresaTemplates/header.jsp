@@ -12,6 +12,7 @@
         <meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0 user-scalable=yes">
         <title>Nomifast</title>
         <link type="text/css" rel="stylesheet" href="../css/demo.css">
+        <link type="text/css" rel="stylesheet" href="../css/main.css">
         <link type="text/css" rel="stylesheet" href="../dist/css/jquery.mmenu.all.css">
         <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">

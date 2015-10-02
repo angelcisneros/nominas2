@@ -9,17 +9,15 @@ package com.quadrum.nominas2.servicios;
 import com.quadrum.nominas2.entidades.PercepcionEmpresa;
 import com.quadrum.nominas2.entidades.PercepcionEmpresaId;
 import java.util.List;
-
 /**
  *
  * @author vcisneros
  */
 public interface PercepcionEmpresaServicio{
-    String agregar(PercepcionEmpresa percepcionEmpresa);
-    String actualizar(PercepcionEmpresa percepcionEmpresa);
-    String eliminar(PercepcionEmpresa percepcionEmpresa);
-    String eliminar(PercepcionEmpresaId id);
-    
-    PercepcionEmpresa buscarPorId(PercepcionEmpresaId id);
-    List<PercepcionEmpresa> buscarTodos();
+  String agregar(PercepcionEmpresa paramPercepcionEmpresa);  
+  String actualizar(PercepcionEmpresa paramPercepcionEmpresa);  
+  String eliminar(PercepcionEmpresa paramPercepcionEmpresa);  
+  String eliminar(PercepcionEmpresaId paramPercepcionEmpresaId);  
+  PercepcionEmpresa buscarPorId(PercepcionEmpresaId paramPercepcionEmpresaId);  
+  List<PercepcionEmpresa> buscarTodos();
 }

@@ -77,5 +77,20 @@ public  class Domicilio implements java.io.Serializable {
         this.pais = pais;
         this.codigoPostal = codigoPostal;
     }
-
+    
+    @Override
+    public String toString() {
+    	String expString = "";
+    	if(!calle.equals("")) expString = expString +calle;
+    	if(!estado.equals("")) expString = expString +" ,"+ calle;
+    	if(!municipio.equals("")) expString = expString +" ,"+ municipio;
+    	if(!codigoPostal.equals("")) expString = expString +" ,"+ codigoPostal;
+    	if(!numInterior.equals("")) expString = expString +" ,"+ numInterior;
+    	if(!numExterior.equals("")) expString = expString +" ,"+ numExterior;
+    	if(!colonia.equals("")) expString = expString +" ,"+ colonia;
+    	if(!localidad.equals("")) expString = expString +" ,"+ localidad;
+    	if(!referencia.equals("")) expString = expString +" ,"+ referencia;
+    	//if(!nombre.equals("")) expString = expString +" ,"+ nombre;
+    	return  expString;
+    }
 }

@@ -38,4 +38,13 @@ public class SucursalRepositorioImpl  extends GenericDaoImpl<Sucursal, Integer> 
                 .add(Restrictions.eq("e.id", empresa))
                 .list();
     }
+
+    @Override
+    public Sucursal buscarPorIdAndEmpresa(Integer sucursal, Integer empresa) {
+        return (Sucursal) sessionFactory.getCurrentSession().createCriteria(Sucursal.class)
+                .createAlias("empresa", "e", JoinType.INNER_JOIN)
+                .add(Restrictions.eq("e.id", empresa))
+                .add(Restrictions.eq("id", sucursal))
+                .uniqueResult();
+    }
 }

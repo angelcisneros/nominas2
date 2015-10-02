@@ -13,4 +13,5 @@ import com.quadrum.nominas2.entidades.Empleado;
  * @author vcisneros
  */
 public interface EmpleadoRepositorio extends GenericDao<Empleado, String>{
+    boolean guardarOrActualizar(Empleado empleado);
 }

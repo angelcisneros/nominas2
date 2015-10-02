@@ -3,22 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.quadrum.nominas2.servicios;
-
-import com.quadrum.nominas2.entidades.Banco;
-import java.util.List;
 
 /**
  *
  * @author vcisneros
  */
-public interface BancoServicio{
-    String agregar(Banco banco);
-    String actualizar(Banco banco);
-    String eliminar(Banco banco);
-    String eliminar(Integer id);
-    
-    Banco buscarPorId(Integer id);
+import com.quadrum.nominas2.entidades.Banco;
+import java.util.List;
+
+public interface BancoServicio {
+    String agregar(Banco paramBanco);
+    String actualizar(Banco paramBanco);
+    String eliminar(Banco paramBanco);
+    String eliminar(Integer paramInteger);
+    Banco buscarPorId(Integer paramInteger);
     List<Banco> buscarTodos();
 }

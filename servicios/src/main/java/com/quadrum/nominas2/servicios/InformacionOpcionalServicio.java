@@ -9,16 +9,11 @@ package com.quadrum.nominas2.servicios;
 import com.quadrum.nominas2.entidades.InformacionOpcional;
 import java.util.List;
 
-/**
- *
- * @author vcisneros
- */
 public interface InformacionOpcionalServicio{
-    String agregar(InformacionOpcional informacionOpcional);
-    String actualizar(InformacionOpcional informacionOpcional);
-    String eliminar(InformacionOpcional informacionOpcional);
-    String eliminar(Integer id);
-    
-    InformacionOpcional buscarPorId(Integer id);
-    List<InformacionOpcional> buscarTodos();
+  String agregar(InformacionOpcional paramInformacionOpcional);  
+  String actualizar(InformacionOpcional paramInformacionOpcional);  
+  String eliminar(InformacionOpcional paramInformacionOpcional);  
+  String eliminar(Integer paramInteger);  
+  InformacionOpcional buscarPorId(Integer paramInteger);  
+  List<InformacionOpcional> buscarTodos();
 }

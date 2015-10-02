@@ -15,10 +15,12 @@ import com.quadrum.nominas2.servicios.PercepcionEmpresaServicio;
 import com.quadrum.nominas2.servicios.SucursalServicio;
 import com.quadrum.nominas2.servicios.logs.ZEmpresa;
 import static com.quadrum.nominas2.servicios.util.Llave.P_EMPRESA;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,7 +48,7 @@ public class PrimeraSesionController {
 
     @Autowired
     DomicilioServicio domicilioServicio;
-    
+
     @Autowired
     PercepcionEmpresaServicio percepcionEmpresaServicio;
 
@@ -78,10 +80,14 @@ public class PrimeraSesionController {
             model.addAttribute("rfc", sucursal.getRfc());
             return "empresaPrimeraSesion/sucursal";
         }
-
+        ByteArrayOutputStream byteArrayOutputStreamCer = new ByteArrayOutputStream();
+        ByteArrayOutputStream byteArrayOutputStreamKey = new ByteArrayOutputStream();
+        IOUtils.copy(certificados.getInputStream(), byteArrayOutputStreamCer);
+        IOUtils.copy(llaves.getInputStream(), byteArrayOutputStreamKey);
+        
+        sucursal.setCer(byteArrayOutputStreamCer.toByteArray());
+        sucursal.setKy(byteArrayOutputStreamKey.toByteArray());
         sucursal.setMatriz(true);
-        sucursal.setCer(certificados.getBytes());
-        sucursal.setKy(llaves.getBytes());
         sucursal.setEmpresa(empresa);
         if (sucursalServicio.agregar(sucursal).contains("Correcto")) {
             empresa.setConfiguracionInicial(1);
@@ -122,7 +128,7 @@ public class PrimeraSesionController {
             return "empresaPrimeraSesion/domicilioFiscal";
         }
         Sucursal sucursal = sucursalServicio.buscarMatriz(empresa.getId());
-        if(sucursal == null){
+        if (sucursal == null) {
             return "error/500";
         }
         domicilio.setSucursal(sucursal);

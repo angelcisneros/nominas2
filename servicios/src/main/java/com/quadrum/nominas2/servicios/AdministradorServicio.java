@@ -3,23 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.quadrum.nominas2.servicios;
-
-import com.quadrum.nominas2.entidades.Administrador;
-import java.util.List;
 
 /**
  *
  * @author vcisneros
  */
-public interface AdministradorServicio{
-    String agregar(Administrador admin);
-    String actualizar(Administrador admin);
-    String eliminar(Administrador admin);
-    String eliminar(Integer id);
-    
-    Administrador buscarPorId(Integer id);
-    Administrador buscarPorCorreo(String correo);
+import com.quadrum.nominas2.entidades.Administrador;
+import java.util.List;
+
+public interface AdministradorServicio {
+
+    String agregar(Administrador paramAdministrador);
+
+    String actualizar(Administrador paramAdministrador);
+
+    String eliminar(Administrador paramAdministrador);
+
+    String eliminar(Integer paramInteger);
+
+    Administrador buscarPorId(Integer paramInteger);
+
+    Administrador buscarPorCorreo(String paramString);
+
     List<Administrador> buscarTodos();
 }

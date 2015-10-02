@@ -3,72 +3,66 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.quadrum.nominas2.servicios.impl;
-
-import com.quadrum.nominas2.entidades.Domicilio;
-import com.quadrum.nominas2.repositorios.DomicilioRepositorio;
-import com.quadrum.nominas2.servicios.DomicilioServicio;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.ADD_CORRECT;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.DELETE_CORRECT;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.ERROR_HIBERNATE;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.UPDATE_CORRECT;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  *
  * @author vcisneros
  */
+import com.quadrum.nominas2.entidades.Domicilio;
+import com.quadrum.nominas2.repositorios.DomicilioRepositorio;
+import com.quadrum.nominas2.servicios.DomicilioServicio;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 @Service
 public class DomicilioServicioImpl implements DomicilioServicio {
 
-   @Autowired
+    @Autowired
     DomicilioRepositorio domicilioRepositorio;
     private static final String ALUMNO_CLASE = "un domicilio.#";
-    
-     @Override
+
+    @Override
     public String agregar(Domicilio domicilio) {
-        if (domicilioRepositorio.agregar(domicilio)) {
-            return ADD_CORRECT + ALUMNO_CLASE;
+        if (this.domicilioRepositorio.agregar(domicilio)) {
+            return "Correcto...#Se ha agregado un domicilio.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
     public String actualizar(Domicilio domicilio) {
-        if (domicilioRepositorio.actualizar(domicilio)) {
-            return UPDATE_CORRECT + ALUMNO_CLASE;
+        if (this.domicilioRepositorio.actualizar(domicilio)) {
+            return "Correcto...#Se ha actualizado un domicilio.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
     public String eliminar(Domicilio domicilio) {
-        if (domicilioRepositorio.eliminar(domicilio)) {
-            return DELETE_CORRECT + ALUMNO_CLASE;
+        if (this.domicilioRepositorio.eliminar(domicilio)) {
+            return "Correcto...#Se ha eliminado un domicilio.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
     public List<Domicilio> buscarTodos() {
-        return domicilioRepositorio.buscarTodos(Domicilio.class);
+        return this.domicilioRepositorio.buscarTodos(Domicilio.class);
     }
 
     @Override
     public String eliminar(Integer id) {
-       Domicilio domicilio = domicilioRepositorio.buscarPorId(Domicilio.class, id);
-       if (domicilioRepositorio.eliminar(domicilio)) {
-            return DELETE_CORRECT + ALUMNO_CLASE;
+        Domicilio domicilio = (Domicilio) this.domicilioRepositorio.buscarPorId(Domicilio.class, id);
+        if (this.domicilioRepositorio.eliminar(domicilio)) {
+            return "Correcto...#Se ha eliminado un domicilio.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
     public Domicilio buscarPorId(Integer id) {
-       return domicilioRepositorio.buscarPorId(Domicilio.class, id);
+        return (Domicilio) this.domicilioRepositorio.buscarPorId(Domicilio.class, id);
     }
-    
 }

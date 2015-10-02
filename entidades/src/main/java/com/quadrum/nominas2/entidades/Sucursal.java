@@ -1,6 +1,7 @@
 package com.quadrum.nominas2.entidades;
 // Generated 26/06/2015 12:29:26 PM by Hibernate Tools 3.6.0
 
+import static com.quadrum.nominas2.entidades.ExpRegulares.INTEGER;
 import static com.quadrum.nominas2.entidades.ExpRegulares.NOMBRES;
 import java.util.List;
 import javax.persistence.Column;
@@ -63,7 +64,7 @@ public class Sucursal implements java.io.Serializable {
     @Column(name = "ky", nullable = false)
     @Getter @Setter private byte[] ky;
 
-    @NotBlank
+    //@NotBlank
     @Column(name = "password", nullable = false, length = 45)
     @Getter @Setter private String password;
 
@@ -87,4 +88,6 @@ public class Sucursal implements java.io.Serializable {
         this.password = password;
         this.foliosConsumidos = foliosConsumidos;
     }
+    
+    
 }

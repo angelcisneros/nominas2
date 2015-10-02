@@ -3,72 +3,66 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.quadrum.nominas2.servicios.impl;
-
-import com.quadrum.nominas2.entidades.RiesgoPuesto;
-import com.quadrum.nominas2.repositorios.RiesgoPuestoRepositorio;
-import com.quadrum.nominas2.servicios.RiesgoPuestoServicio;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.ADD_CORRECT;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.DELETE_CORRECT;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.ERROR_HIBERNATE;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.UPDATE_CORRECT;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  *
  * @author vcisneros
  */
+import com.quadrum.nominas2.entidades.RiesgoPuesto;
+import com.quadrum.nominas2.repositorios.RiesgoPuestoRepositorio;
+import com.quadrum.nominas2.servicios.RiesgoPuestoServicio;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 @Service
 public class RiesgoPuestoServicioImpl implements RiesgoPuestoServicio {
 
-   @Autowired
+    @Autowired
     RiesgoPuestoRepositorio riesgoPuestoRepositorio;
     private static final String ALUMNO_CLASE = "un riesgoPuesto.#";
-    
-     @Override
+
+    @Override
     public String agregar(RiesgoPuesto riesgoPuesto) {
-        if (riesgoPuestoRepositorio.agregar(riesgoPuesto)) {
-            return ADD_CORRECT + ALUMNO_CLASE;
+        if (this.riesgoPuestoRepositorio.agregar(riesgoPuesto)) {
+            return "Correcto...#Se ha agregado un riesgoPuesto.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
     public String actualizar(RiesgoPuesto riesgoPuesto) {
-        if (riesgoPuestoRepositorio.actualizar(riesgoPuesto)) {
-            return UPDATE_CORRECT + ALUMNO_CLASE;
+        if (this.riesgoPuestoRepositorio.actualizar(riesgoPuesto)) {
+            return "Correcto...#Se ha actualizado un riesgoPuesto.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
     public String eliminar(RiesgoPuesto riesgoPuesto) {
-        if (riesgoPuestoRepositorio.eliminar(riesgoPuesto)) {
-            return DELETE_CORRECT + ALUMNO_CLASE;
+        if (this.riesgoPuestoRepositorio.eliminar(riesgoPuesto)) {
+            return "Correcto...#Se ha eliminado un riesgoPuesto.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
     public List<RiesgoPuesto> buscarTodos() {
-        return riesgoPuestoRepositorio.buscarTodos(RiesgoPuestoRepositorio.class);
+        return this.riesgoPuestoRepositorio.buscarTodos(RiesgoPuestoRepositorio.class);
     }
 
     @Override
     public String eliminar(Integer id) {
-       RiesgoPuesto riesgoPuesto = riesgoPuestoRepositorio.buscarPorId(RiesgoPuestoRepositorio.class, id);
-       if (riesgoPuestoRepositorio.eliminar(riesgoPuesto)) {
-            return DELETE_CORRECT + ALUMNO_CLASE;
+        RiesgoPuesto riesgoPuesto = (RiesgoPuesto) this.riesgoPuestoRepositorio.buscarPorId(RiesgoPuestoRepositorio.class, id);
+        if (this.riesgoPuestoRepositorio.eliminar(riesgoPuesto)) {
+            return "Correcto...#Se ha eliminado un riesgoPuesto.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
     public RiesgoPuesto buscarPorId(Integer id) {
-       return riesgoPuestoRepositorio.buscarPorId(RiesgoPuestoRepositorio.class, id);
+        return (RiesgoPuesto) this.riesgoPuestoRepositorio.buscarPorId(RiesgoPuestoRepositorio.class, id);
     }
-    
 }

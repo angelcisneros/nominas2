@@ -5,7 +5,6 @@
  */
 package com.quadrum.nominas2.controller.empresa;
 
-;
 import com.quadrum.nominas2.entidades.Empresa;
 import com.quadrum.nominas2.servicios.EmpresaServicio;
 import static com.quadrum.nominas2.servicios.util.Llave.EMPRESA;
@@ -63,11 +62,7 @@ public class HomeEmpresaController {
         return P_EMPRESA + "recibos";
     }
 
-    @RequestMapping(value = "timbrar")
-    public String timbrar(Model model) {
-
-        return P_EMPRESA + "timbrar";
-    }
+   
 
     @RequestMapping(value = "cancelar")
     public String cancelar(Model model) {

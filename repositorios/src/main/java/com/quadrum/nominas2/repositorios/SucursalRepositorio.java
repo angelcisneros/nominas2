@@ -14,7 +14,7 @@ import java.util.List;
  * @author vcisneros
  */
 public interface SucursalRepositorio extends GenericDao<Sucursal, Integer>{
-    
     Sucursal buscarPorMatriz(Integer empresa);
+    Sucursal buscarPorIdAndEmpresa(Integer sucursal, Integer empresa);
     List<Sucursal> buscarPorEmpresa(Integer empresa);
 }

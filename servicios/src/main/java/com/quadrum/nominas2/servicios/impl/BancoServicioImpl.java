@@ -3,72 +3,66 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.quadrum.nominas2.servicios.impl;
-
-import com.quadrum.nominas2.entidades.Banco;
-import com.quadrum.nominas2.repositorios.BancoRepositorio;
-import com.quadrum.nominas2.servicios.BancoServicio;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.ADD_CORRECT;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.DELETE_CORRECT;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.ERROR_HIBERNATE;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.UPDATE_CORRECT;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  *
  * @author vcisneros
  */
+import com.quadrum.nominas2.entidades.Banco;
+import com.quadrum.nominas2.repositorios.BancoRepositorio;
+import com.quadrum.nominas2.servicios.BancoServicio;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 @Service
 public class BancoServicioImpl implements BancoServicio {
 
-   @Autowired
+    @Autowired
     BancoRepositorio bancoRepositorio;
     private static final String ALUMNO_CLASE = "un banco.#";
-    
-     @Override
+
+    @Override
     public String agregar(Banco banco) {
-        if (bancoRepositorio.agregar(banco)) {
-            return ADD_CORRECT + ALUMNO_CLASE;
+        if (this.bancoRepositorio.agregar(banco)) {
+            return "Correcto...#Se ha agregado un banco.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
     public String actualizar(Banco banco) {
-        if (bancoRepositorio.actualizar(banco)) {
-            return UPDATE_CORRECT + ALUMNO_CLASE;
+        if (this.bancoRepositorio.actualizar(banco)) {
+            return "Correcto...#Se ha actualizado un banco.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
     public String eliminar(Banco banco) {
-        if (bancoRepositorio.eliminar(banco)) {
-            return DELETE_CORRECT + ALUMNO_CLASE;
+        if (this.bancoRepositorio.eliminar(banco)) {
+            return "Correcto...#Se ha eliminado un banco.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
     public List<Banco> buscarTodos() {
-        return bancoRepositorio.buscarTodos(Banco.class);
+        return this.bancoRepositorio.buscarTodos(Banco.class);
     }
 
     @Override
     public String eliminar(Integer id) {
-       Banco banco = bancoRepositorio.buscarPorId(Banco.class, id);
-       if (bancoRepositorio.eliminar(banco)) {
-            return DELETE_CORRECT + ALUMNO_CLASE;
+        Banco banco = (Banco) this.bancoRepositorio.buscarPorId(Banco.class, id);
+        if (this.bancoRepositorio.eliminar(banco)) {
+            return "Correcto...#Se ha eliminado un banco.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
     public Banco buscarPorId(Integer id) {
-       return bancoRepositorio.buscarPorId(Banco.class, id);
+        return (Banco) this.bancoRepositorio.buscarPorId(Banco.class, id);
     }
-    
 }

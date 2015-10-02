@@ -3,22 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.quadrum.nominas2.servicios;
 
 import com.quadrum.nominas2.entidades.RegimenContratacion;
 import java.util.List;
 
-/**
- *
- * @author vcisneros
- */
-public interface RegimenContratacionServicio{
-    String agregar(RegimenContratacion regimenContratacion);
-    String actualizar(RegimenContratacion regimenContratacion);
-    String eliminar(RegimenContratacion regimenContratacion);
-    String eliminar(Integer id);
-    
-    RegimenContratacion buscarPorId(Integer id);
+public interface RegimenContratacionServicio {
+    String agregar(RegimenContratacion paramRegimenContratacion);
+    String actualizar(RegimenContratacion paramRegimenContratacion);
+    String eliminar(RegimenContratacion paramRegimenContratacion);
+    String eliminar(Integer paramInteger);
+    RegimenContratacion buscarPorId(Integer paramInteger);
     List<RegimenContratacion> buscarTodos();
 }

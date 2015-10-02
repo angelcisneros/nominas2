@@ -5,7 +5,6 @@
  */
 package com.quadrum.nominas2.servicios.util;
 
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;

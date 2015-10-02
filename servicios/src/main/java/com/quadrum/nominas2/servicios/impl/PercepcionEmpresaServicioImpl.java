@@ -3,73 +3,67 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.quadrum.nominas2.servicios.impl;
-
-import com.quadrum.nominas2.entidades.PercepcionEmpresa;
-import com.quadrum.nominas2.entidades.PercepcionEmpresaId;
-import com.quadrum.nominas2.repositorios.PercepcionEmpresaRepositorio;
-import com.quadrum.nominas2.servicios.PercepcionEmpresaServicio;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.ADD_CORRECT;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.DELETE_CORRECT;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.ERROR_HIBERNATE;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.UPDATE_CORRECT;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  *
  * @author vcisneros
  */
+import com.quadrum.nominas2.entidades.PercepcionEmpresa;
+import com.quadrum.nominas2.entidades.PercepcionEmpresaId;
+import com.quadrum.nominas2.repositorios.PercepcionEmpresaRepositorio;
+import com.quadrum.nominas2.servicios.PercepcionEmpresaServicio;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 @Service
 public class PercepcionEmpresaServicioImpl implements PercepcionEmpresaServicio {
 
-   @Autowired
+    @Autowired
     PercepcionEmpresaRepositorio percepcionEmpresaRepositorio;
     private static final String ALUMNO_CLASE = "un percepcionEmpresa.#";
-    
-     @Override
+
+    @Override
     public String agregar(PercepcionEmpresa percepcionEmpresa) {
-        if (percepcionEmpresaRepositorio.agregar(percepcionEmpresa)) {
-            return ADD_CORRECT + ALUMNO_CLASE;
+        if (this.percepcionEmpresaRepositorio.agregar(percepcionEmpresa)) {
+            return "Correcto...#Se ha agregado un percepcionEmpresa.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
     public String actualizar(PercepcionEmpresa percepcionEmpresa) {
-        if (percepcionEmpresaRepositorio.actualizar(percepcionEmpresa)) {
-            return UPDATE_CORRECT + ALUMNO_CLASE;
+        if (this.percepcionEmpresaRepositorio.actualizar(percepcionEmpresa)) {
+            return "Correcto...#Se ha actualizado un percepcionEmpresa.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
     public String eliminar(PercepcionEmpresa percepcionEmpresa) {
-        if (percepcionEmpresaRepositorio.eliminar(percepcionEmpresa)) {
-            return DELETE_CORRECT + ALUMNO_CLASE;
+        if (this.percepcionEmpresaRepositorio.eliminar(percepcionEmpresa)) {
+            return "Correcto...#Se ha eliminado un percepcionEmpresa.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
     public List<PercepcionEmpresa> buscarTodos() {
-        return percepcionEmpresaRepositorio.buscarTodos(PercepcionEmpresa.class);
+        return this.percepcionEmpresaRepositorio.buscarTodos(PercepcionEmpresa.class);
     }
 
     @Override
     public String eliminar(PercepcionEmpresaId id) {
-       PercepcionEmpresa percepcionEmpresa = percepcionEmpresaRepositorio.buscarPorId(PercepcionEmpresa.class, id);
-       if (percepcionEmpresaRepositorio.eliminar(percepcionEmpresa)) {
-            return DELETE_CORRECT + ALUMNO_CLASE;
+        PercepcionEmpresa percepcionEmpresa = (PercepcionEmpresa) this.percepcionEmpresaRepositorio.buscarPorId(PercepcionEmpresa.class, id);
+        if (this.percepcionEmpresaRepositorio.eliminar(percepcionEmpresa)) {
+            return "Correcto...#Se ha eliminado un percepcionEmpresa.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
     public PercepcionEmpresa buscarPorId(PercepcionEmpresaId id) {
-       return percepcionEmpresaRepositorio.buscarPorId(PercepcionEmpresa.class, id);
+        return (PercepcionEmpresa) this.percepcionEmpresaRepositorio.buscarPorId(PercepcionEmpresa.class, id);
     }
-    
 }

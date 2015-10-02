@@ -3,72 +3,66 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.quadrum.nominas2.servicios.impl;
-
-import com.quadrum.nominas2.entidades.RegimenContratacion;
-import com.quadrum.nominas2.repositorios.RegimenContratacionRepositorio;
-import com.quadrum.nominas2.servicios.RegimenContratacionServicio;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.ADD_CORRECT;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.DELETE_CORRECT;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.ERROR_HIBERNATE;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.UPDATE_CORRECT;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  *
  * @author vcisneros
  */
+import com.quadrum.nominas2.entidades.RegimenContratacion;
+import com.quadrum.nominas2.repositorios.RegimenContratacionRepositorio;
+import com.quadrum.nominas2.servicios.RegimenContratacionServicio;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 @Service
 public class RegimenContratacionServicioImpl implements RegimenContratacionServicio {
 
-   @Autowired
+    @Autowired
     RegimenContratacionRepositorio regimenContratacionRepositorio;
     private static final String ALUMNO_CLASE = "un regimenContratacion.#";
-    
-     @Override
+
+    @Override
     public String agregar(RegimenContratacion regimenContratacion) {
-        if (regimenContratacionRepositorio.agregar(regimenContratacion)) {
-            return ADD_CORRECT + ALUMNO_CLASE;
+        if (this.regimenContratacionRepositorio.agregar(regimenContratacion)) {
+            return "Correcto...#Se ha agregado un regimenContratacion.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
     public String actualizar(RegimenContratacion regimenContratacion) {
-        if (regimenContratacionRepositorio.actualizar(regimenContratacion)) {
-            return UPDATE_CORRECT + ALUMNO_CLASE;
+        if (this.regimenContratacionRepositorio.actualizar(regimenContratacion)) {
+            return "Correcto...#Se ha actualizado un regimenContratacion.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
     public String eliminar(RegimenContratacion regimenContratacion) {
-        if (regimenContratacionRepositorio.eliminar(regimenContratacion)) {
-            return DELETE_CORRECT + ALUMNO_CLASE;
+        if (this.regimenContratacionRepositorio.eliminar(regimenContratacion)) {
+            return "Correcto...#Se ha eliminado un regimenContratacion.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
     public List<RegimenContratacion> buscarTodos() {
-        return regimenContratacionRepositorio.buscarTodos(RegimenContratacion.class);
+        return this.regimenContratacionRepositorio.buscarTodos(RegimenContratacion.class);
     }
 
     @Override
     public String eliminar(Integer id) {
-       RegimenContratacion regimenContratacion = regimenContratacionRepositorio.buscarPorId(RegimenContratacion.class, id);
-       if (regimenContratacionRepositorio.eliminar(regimenContratacion)) {
-            return DELETE_CORRECT + ALUMNO_CLASE;
+        RegimenContratacion regimenContratacion = (RegimenContratacion) this.regimenContratacionRepositorio.buscarPorId(RegimenContratacion.class, id);
+        if (this.regimenContratacionRepositorio.eliminar(regimenContratacion)) {
+            return "Correcto...#Se ha eliminado un regimenContratacion.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
     public RegimenContratacion buscarPorId(Integer id) {
-       return regimenContratacionRepositorio.buscarPorId(RegimenContratacion.class, id);
+        return (RegimenContratacion) this.regimenContratacionRepositorio.buscarPorId(RegimenContratacion.class, id);
     }
-    
 }

@@ -6,8 +6,8 @@
 
 package com.quadrum.nominas2.repositorios.impl;
 
-import com.quadrum.nominas2.entidades.PeriodicidadPago;
-import com.quadrum.nominas2.repositorios.PeriodicidadPagoRepositorio;
+import com.quadrum.nominas2.entidades.Archivo;
+import com.quadrum.nominas2.repositorios.ArchivoRepositorio;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Transactional
 @Repository
-public class PeriodicidadPagoRepositorioImpl  extends GenericDaoImpl<PeriodicidadPago, Integer> implements PeriodicidadPagoRepositorio {
+public class ArchivoRepositorioImpl  extends GenericDaoImpl<Archivo, Integer> implements ArchivoRepositorio {
 
 }

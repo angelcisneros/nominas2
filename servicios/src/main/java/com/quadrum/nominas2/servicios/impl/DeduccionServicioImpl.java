@@ -3,72 +3,66 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.quadrum.nominas2.servicios.impl;
-
-import com.quadrum.nominas2.entidades.Deduccion;
-import com.quadrum.nominas2.repositorios.DeduccionRepositorio;
-import com.quadrum.nominas2.servicios.DeduccionServicio;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.ADD_CORRECT;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.DELETE_CORRECT;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.ERROR_HIBERNATE;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.UPDATE_CORRECT;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  *
  * @author vcisneros
  */
+import com.quadrum.nominas2.entidades.Deduccion;
+import com.quadrum.nominas2.repositorios.DeduccionRepositorio;
+import com.quadrum.nominas2.servicios.DeduccionServicio;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 @Service
 public class DeduccionServicioImpl implements DeduccionServicio {
 
-   @Autowired
+    @Autowired
     DeduccionRepositorio deduccionRepositorio;
     private static final String ALUMNO_CLASE = "un deduccion.#";
-    
-     @Override
+
+    @Override
     public String agregar(Deduccion deduccion) {
-        if (deduccionRepositorio.agregar(deduccion)) {
-            return ADD_CORRECT + ALUMNO_CLASE;
+        if (this.deduccionRepositorio.agregar(deduccion)) {
+            return "Correcto...#Se ha agregado un deduccion.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
     public String actualizar(Deduccion deduccion) {
-        if (deduccionRepositorio.actualizar(deduccion)) {
-            return UPDATE_CORRECT + ALUMNO_CLASE;
+        if (this.deduccionRepositorio.actualizar(deduccion)) {
+            return "Correcto...#Se ha actualizado un deduccion.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
     public String eliminar(Deduccion deduccion) {
-        if (deduccionRepositorio.eliminar(deduccion)) {
-            return DELETE_CORRECT + ALUMNO_CLASE;
+        if (this.deduccionRepositorio.eliminar(deduccion)) {
+            return "Correcto...#Se ha eliminado un deduccion.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
     public List<Deduccion> buscarTodos() {
-        return deduccionRepositorio.buscarTodos(Deduccion.class);
+        return this.deduccionRepositorio.buscarTodos(Deduccion.class);
     }
 
     @Override
     public String eliminar(Integer id) {
-       Deduccion deduccion = deduccionRepositorio.buscarPorId(Deduccion.class, id);
-       if (deduccionRepositorio.eliminar(deduccion)) {
-            return DELETE_CORRECT + ALUMNO_CLASE;
+        Deduccion deduccion = (Deduccion) this.deduccionRepositorio.buscarPorId(Deduccion.class, id);
+        if (this.deduccionRepositorio.eliminar(deduccion)) {
+            return "Correcto...#Se ha eliminado un deduccion.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
     public Deduccion buscarPorId(Integer id) {
-       return deduccionRepositorio.buscarPorId(Deduccion.class, id);
+        return (Deduccion) this.deduccionRepositorio.buscarPorId(Deduccion.class, id);
     }
-    
 }

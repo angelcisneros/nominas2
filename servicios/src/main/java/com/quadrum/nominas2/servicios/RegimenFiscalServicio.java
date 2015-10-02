@@ -5,20 +5,14 @@
  */
 
 package com.quadrum.nominas2.servicios;
-
 import com.quadrum.nominas2.entidades.RegimenFiscal;
 import java.util.List;
 
-/**
- *
- * @author vcisneros
- */
 public interface RegimenFiscalServicio{
-    String agregar(RegimenFiscal regimenFiscal);
-    String actualizar(RegimenFiscal regimenFiscal);
-    String eliminar(RegimenFiscal regimenFiscal);
-    String eliminar(Integer id);
-    
-    RegimenFiscal buscarPorId(Integer id);
-    List<RegimenFiscal> buscarTodos();
+  String agregar(RegimenFiscal paramRegimenFiscal);  
+  String actualizar(RegimenFiscal paramRegimenFiscal);  
+  String eliminar(RegimenFiscal paramRegimenFiscal);  
+  String eliminar(Integer paramInteger);  
+  RegimenFiscal buscarPorId(Integer paramInteger);  
+  List<RegimenFiscal> buscarTodos();
 }

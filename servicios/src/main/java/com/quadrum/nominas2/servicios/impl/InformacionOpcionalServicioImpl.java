@@ -3,72 +3,66 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.quadrum.nominas2.servicios.impl;
-
-import com.quadrum.nominas2.entidades.InformacionOpcional;
-import com.quadrum.nominas2.repositorios.InformacionOpcionalRepositorio;
-import com.quadrum.nominas2.servicios.InformacionOpcionalServicio;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.ADD_CORRECT;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.DELETE_CORRECT;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.ERROR_HIBERNATE;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.UPDATE_CORRECT;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  *
  * @author vcisneros
  */
+import com.quadrum.nominas2.entidades.InformacionOpcional;
+import com.quadrum.nominas2.repositorios.InformacionOpcionalRepositorio;
+import com.quadrum.nominas2.servicios.InformacionOpcionalServicio;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 @Service
 public class InformacionOpcionalServicioImpl implements InformacionOpcionalServicio {
 
-   @Autowired
+    @Autowired
     InformacionOpcionalRepositorio informacionOpcionalRepositorio;
     private static final String ALUMNO_CLASE = "un informacionOpcional.#";
-    
-     @Override
+
+    @Override
     public String agregar(InformacionOpcional informacionOpcional) {
-        if (informacionOpcionalRepositorio.agregar(informacionOpcional)) {
-            return ADD_CORRECT + ALUMNO_CLASE;
+        if (this.informacionOpcionalRepositorio.agregar(informacionOpcional)) {
+            return "Correcto...#Se ha agregado un informacionOpcional.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
     public String actualizar(InformacionOpcional informacionOpcional) {
-        if (informacionOpcionalRepositorio.actualizar(informacionOpcional)) {
-            return UPDATE_CORRECT + ALUMNO_CLASE;
+        if (this.informacionOpcionalRepositorio.actualizar(informacionOpcional)) {
+            return "Correcto...#Se ha actualizado un informacionOpcional.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
     public String eliminar(InformacionOpcional informacionOpcional) {
-        if (informacionOpcionalRepositorio.eliminar(informacionOpcional)) {
-            return DELETE_CORRECT + ALUMNO_CLASE;
+        if (this.informacionOpcionalRepositorio.eliminar(informacionOpcional)) {
+            return "Correcto...#Se ha eliminado un informacionOpcional.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
     public List<InformacionOpcional> buscarTodos() {
-        return informacionOpcionalRepositorio.buscarTodos(InformacionOpcional.class);
+        return this.informacionOpcionalRepositorio.buscarTodos(InformacionOpcional.class);
     }
 
     @Override
     public String eliminar(Integer id) {
-       InformacionOpcional informacionOpcional = informacionOpcionalRepositorio.buscarPorId(InformacionOpcional.class, id);
-       if (informacionOpcionalRepositorio.eliminar(informacionOpcional)) {
-            return DELETE_CORRECT + ALUMNO_CLASE;
+        InformacionOpcional informacionOpcional = (InformacionOpcional) this.informacionOpcionalRepositorio.buscarPorId(InformacionOpcional.class, id);
+        if (this.informacionOpcionalRepositorio.eliminar(informacionOpcional)) {
+            return "Correcto...#Se ha eliminado un informacionOpcional.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
     public InformacionOpcional buscarPorId(Integer id) {
-       return informacionOpcionalRepositorio.buscarPorId(InformacionOpcional.class, id);
+        return (InformacionOpcional) this.informacionOpcionalRepositorio.buscarPorId(InformacionOpcional.class, id);
     }
-    
 }

@@ -5,14 +5,15 @@
  */
 package com.quadrum.nominas2.servicios.util;
 
-import com.quadrum.nominas2.entidades.Usuario;
-import java.util.Random;
-import org.jasypt.util.text.BasicTextEncryptor;
-
 /**
  *
  * @author vcisneros
  */
+import com.quadrum.nominas2.entidades.Usuario;
+import java.util.GregorianCalendar;
+import java.util.Random;
+import org.jasypt.util.text.BasicTextEncryptor;
+
 public class LinkConfirmacion {
 
     private static final String DOMINIO = "http://localhost:8080/nomifast2/confirmacion?usuario=";
@@ -20,11 +21,11 @@ public class LinkConfirmacion {
     private static final String PASWWORD = "password";
 
     public static String generarLinkRegistro(Usuario usuario) {
-        return DOMINIO + usuario.getUserName() + "&confirmacion=" + generarCadenaAleatoria() + "&opcion=" + encriptar(REGISTRO, usuario.getUserName());
+        return "http://localhost:8080/nomifast2/confirmacion?usuario=" + usuario.getUserName() + "&confirmacion=" + generarCadenaAleatoria() + "&opcion=" + encriptar("registro", usuario.getUserName());
     }
 
     public static String generarLinkPassword(Usuario usuario) {
-        return DOMINIO + usuario.getUserName() + "&confirmacion=" + generarCadenaAleatoria() + "&opcion=" + encriptar(PASWWORD, usuario.getUserName());
+        return "http://localhost:8080/nomifast2/confirmacion?usuario=" + usuario.getUserName() + "&confirmacion=" + generarCadenaAleatoria() + "&opcion=" + encriptar("password", usuario.getUserName());
     }
 
     public static String encriptar(String text, String key) {
@@ -42,14 +43,13 @@ public class LinkConfirmacion {
 
     public static String generarCadenaAleatoria() {
         String cadenaAleatoria = "";
-        long milis = new java.util.GregorianCalendar().getTimeInMillis();
+        long milis = new GregorianCalendar().getTimeInMillis();
         Random r = new Random(milis);
         int i = 0;
         while (i < 10) {
             char c = (char) r.nextInt(255);
-            //System.out.println("char:"+c);
-            if ((c >= '0' && c <= 9) || (c >= 'A' && c <= 'Z')) {
-                cadenaAleatoria += c;
+            if (((c >= '0') && (c <= '\t')) || ((c >= 'A') && (c <= 'Z'))) {
+                cadenaAleatoria = cadenaAleatoria + c;
                 i++;
             }
         }
@@ -63,9 +63,9 @@ public class LinkConfirmacion {
     }
 
     public static String reconstruirLinkRegistro(String usuario, String confirmacion, String opcion) {
-        String x = DOMINIO;
-        if (REGISTRO.equals(desencriptar(opcion, usuario))) {
-             x += usuario + "&confirmacion=" + confirmacion + "&opcion=" + opcion;
+        String x = "http://localhost:8080/nomifast2/confirmacion?usuario=";
+        if ("registro".equals(desencriptar(opcion, usuario))) {
+            x = x + usuario + "&confirmacion=" + confirmacion + "&opcion=" + opcion;
         }
         System.out.println(x);
         return x;

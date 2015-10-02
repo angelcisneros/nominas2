@@ -3,16 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.quadrum.nominas2.servicios.impl;
 
 import com.quadrum.nominas2.entidades.Empleado;
 import com.quadrum.nominas2.repositorios.EmpleadoRepositorio;
 import com.quadrum.nominas2.servicios.EmpleadoServicio;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.ADD_CORRECT;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.DELETE_CORRECT;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.ERROR_HIBERNATE;
-import static com.quadrum.nominas2.servicios.util.MensajesCrud.UPDATE_CORRECT;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,51 +19,50 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmpleadoServicioImpl implements EmpleadoServicio {
 
-   @Autowired
+    @Autowired
     EmpleadoRepositorio empleadoRepositorio;
     private static final String ALUMNO_CLASE = "un empleado.#";
-    
-     @Override
+
+    @Override
     public String agregar(Empleado empleado) {
-        if (empleadoRepositorio.agregar(empleado)) {
-            return ADD_CORRECT + ALUMNO_CLASE;
+        if (this.empleadoRepositorio.agregar(empleado)) {
+            return "Correcto...#Se ha agregado un empleado.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
     public String actualizar(Empleado empleado) {
-        if (empleadoRepositorio.actualizar(empleado)) {
-            return UPDATE_CORRECT + ALUMNO_CLASE;
+        if (this.empleadoRepositorio.actualizar(empleado)) {
+            return "Correcto...#Se ha actualizado un empleado.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
     public String eliminar(Empleado empleado) {
-        if (empleadoRepositorio.eliminar(empleado)) {
-            return DELETE_CORRECT + ALUMNO_CLASE;
+        if (this.empleadoRepositorio.eliminar(empleado)) {
+            return "Correcto...#Se ha eliminado un empleado.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
     public List<Empleado> buscarTodos() {
-        return empleadoRepositorio.buscarTodos(Empleado.class);
+        return this.empleadoRepositorio.buscarTodos(Empleado.class);
     }
 
     @Override
     public String eliminar(String id) {
-       Empleado empleado = empleadoRepositorio.buscarPorId(Empleado.class, id);
-       if (empleadoRepositorio.eliminar(empleado)) {
-            return DELETE_CORRECT + ALUMNO_CLASE;
+        Empleado empleado = (Empleado) this.empleadoRepositorio.buscarPorId(Empleado.class, id);
+        if (this.empleadoRepositorio.eliminar(empleado)) {
+            return "Correcto...#Se ha eliminado un empleado.#";
         }
-        return ERROR_HIBERNATE;
+        return "Ups!...#Estamos teniendo problemas al conectar con el servidor, intente m�s tarde.";
     }
 
     @Override
     public Empleado buscarPorId(String id) {
-       return empleadoRepositorio.buscarPorId(Empleado.class, id);
+        return (Empleado) this.empleadoRepositorio.buscarPorId(Empleado.class, id);
     }
-    
 }

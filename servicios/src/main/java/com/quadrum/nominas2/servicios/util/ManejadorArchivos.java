@@ -5,6 +5,10 @@
  */
 package com.quadrum.nominas2.servicios.util;
 
+/**
+ *
+ * @author vcisneros
+ */
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
@@ -25,10 +29,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.web.multipart.MultipartFile;
 
-/**
- *
- * @author vcisneros
- */
 public class ManejadorArchivos {
 
     public static boolean eliminarDirectorio(String path) {
@@ -46,7 +46,6 @@ public class ManejadorArchivos {
 
     private static void borraArchivos(File directortioLogo) {
         File[] ficheros = directortioLogo.listFiles();
-
         for (int i = 0; i < ficheros.length; i++) {
             if (ficheros[i].isDirectory()) {
                 borraArchivos(ficheros[i]);
@@ -54,10 +53,10 @@ public class ManejadorArchivos {
                 ficheros[i].delete();
             }
         }
-
     }
 
-    public static byte[] ImagenToArreglo(String path) throws Exception {
+    public static byte[] ImagenToArreglo(String path)
+            throws Exception {
         File logo = new File(path);
         FileInputStream fis = null;
         byte[] bytes = null;
@@ -65,9 +64,9 @@ public class ManejadorArchivos {
         try {
             fis = new FileInputStream(logo);
             bos = new ByteArrayOutputStream();
-            byte[] buf = new byte[1024];
-
-            for (int readNum; (readNum = fis.read(buf)) != -1;) {
+            byte[] buf = new byte['?'];
+            int readNum;
+            while ((readNum = fis.read(buf)) != -1) {
                 bos.write(buf, 0, readNum);
             }
             bytes = bos.toByteArray();
@@ -85,11 +84,12 @@ public class ManejadorArchivos {
         return bytes;
     }
 
-    public static String convertStreamToString(InputStream is) throws IOException {
+    public static String convertStreamToString(InputStream is)
+            throws IOException {
         if (is != null) {
             Writer writer = new StringWriter();
 
-            char[] buffer = new char[1024];
+            char[] buffer = new char['?'];
             try {
                 Reader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
                 int n;
@@ -100,21 +100,17 @@ public class ManejadorArchivos {
                 is.close();
             }
             return writer.toString();
-        } else {
-            return "";
         }
+        return "";
     }
 
     public static void escribirArchivo(File f, String contenido) {
-
         try {
             FileWriter w = new FileWriter(f);
             BufferedWriter bw = new BufferedWriter(w);
             PrintWriter wr = new PrintWriter(bw);
-            wr.write(contenido);//escribimos en el archivo 
-            //wr.append(" - y aqui continua"); //concatenamos en el archivo sin borrar lo existente
-            //ahora cerramos los flujos de canales de datos, al cerrarlos el archivo quedará guardado con información escrita
-            //de no hacerlo no se escribirá nada en el archivo
+            wr.write(contenido);
+
             wr.close();
             bw.close();
         } catch (IOException e) {
@@ -134,7 +130,6 @@ public class ManejadorArchivos {
             e.printStackTrace();
         }
         return correcto;
-
     }
 
     public static boolean crearArchivoContenido(String path, byte[] contenido) {
@@ -150,31 +145,17 @@ public class ManejadorArchivos {
             e.printStackTrace();
         }
         return correcto;
-
     }
 
-//
-//    public static byte[] archivoToArray(String pathFile) {
-//        Path path;        
-//        path = Paths.get(pathFile);
-//        try {
-//            return Files.readAllBytes(path);
-//        } catch (IOException ex) {
-//            Logger.getLogger(ManejadorArchivos.class.getName()).log(Level.SEVERE, null, ex);
-//            return null;
-//        }
-//    }
     public static byte[] convierteArchivoToArregloBytes(File file) {
-        FileInputStream fis;
         byte[] archivo = null;
         try {
-            fis = new FileInputStream(file);
+            FileInputStream fis = new FileInputStream(file);
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            byte[] buf = new byte[1024];
-            for (int readNum; (readNum = fis.read(buf)) != -1;) {
-                bos.write(buf, 0, readNum); //no doubt here is 0
-                //Writes len bytes from the specified byte array starting at offset off to this byte array output stream.
-
+            byte[] buf = new byte['?'];
+            int readNum;
+            while ((readNum = fis.read(buf)) != -1) {
+                bos.write(buf, 0, readNum);
             }
             archivo = bos.toByteArray();
             bos.close();
@@ -184,28 +165,34 @@ public class ManejadorArchivos {
         } catch (IOException ex) {
             Logger.getLogger(ManejadorArchivos.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //System.out.println(file.exists() + "!!");
-        //InputStream in = resource.openStream();
         return archivo;
     }
+
     public static String subirImagen(MultipartFile imagen, String path) {
-       try {
+        try {
             crearArchivoContenido(path, imagen.getBytes());
             return "1";
         } catch (IOException ex) {
             Logger.getLogger(ManejadorArchivos.class.getName()).log(Level.SEVERE, null, ex);
-            return "-1";
         }
+        return "-1";
     }
-    
-    public static void borrarArchivosAndContenido(File carpeta){
-        for(File archivo: carpeta.listFiles()){
-            if(archivo.isDirectory()){
+
+    public static void borrarArchivosAndContenido(File carpeta) {
+        for (File archivo : carpeta.listFiles()) {
+            if (archivo.isDirectory()) {
                 borrarArchivosAndContenido(archivo);
-            }else{
+            } else {
                 archivo.delete();
             }
         }
         carpeta.delete();
+    }
+    
+    public static boolean crearPath(String path){
+        File file = new File(path);
+        if(file.exists())
+            return true;
+        return file.mkdirs();
     }
 }

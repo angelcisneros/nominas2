@@ -6,19 +6,15 @@
 
 package com.quadrum.nominas2.servicios;
 
+
 import com.quadrum.nominas2.entidades.RiesgoPuesto;
 import java.util.List;
 
-/**
- *
- * @author vcisneros
- */
-public interface RiesgoPuestoServicio{
-    String agregar(RiesgoPuesto riesgoPuesto);
-    String actualizar(RiesgoPuesto riesgoPuesto);
-    String eliminar(RiesgoPuesto riesgoPuesto);
-    String eliminar(Integer id);
-    
-    RiesgoPuesto buscarPorId(Integer id);
-    List<RiesgoPuesto> buscarTodos();
+public interface RiesgoPuestoServicio {
+  String agregar(RiesgoPuesto paramRiesgoPuesto);  
+  String actualizar(RiesgoPuesto paramRiesgoPuesto);  
+  String eliminar(RiesgoPuesto paramRiesgoPuesto);  
+  String eliminar(Integer paramInteger);  
+  RiesgoPuesto buscarPorId(Integer paramInteger);
+  List<RiesgoPuesto> buscarTodos();
 }

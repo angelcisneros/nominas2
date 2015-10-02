@@ -78,25 +78,13 @@ function validarOption(opcion) {
     return valido;
 }
 function validaRFC(rfc) {
-    var strCorrecta;
-    strCorrecta = $(rfc).val();
-    var valid = '';
-    if (strCorrecta.length === 12) {
-        valid = '^(([A-Z]|[a-z]){3})([0-9]{6})((([A-Z]|[a-z]|[0-9]){3}))';
-    } else {
-        valid = '^(([A-Z]|[a-z]|\s){1})(([A-Z]|[a-z]){3})([0-9]{6})((([A-Z]|[a-z]|[0-9]){3}))';
-    }
-    var validRfc = new RegExp(valid);
-    var matchArray = strCorrecta.match(validRfc);
-    if (matchArray === null) {
-        muestraError(rfc, 'RFC Invalido', 'La estructura del rfc debe ser valida');
-        return false;
-    }
-    else {
+    var valido = /^[A-Z,Ã‘,&]{3,4}[0-9]{2}[0-1][0-9][0-3][0-9][A-Z,0-9]{3}$/.test($(rfc).val());
+    if(valido){
         limpiar(rfc);
-        return true;
+    }else{
+        muestraError(rfc, 'RFC Inválido', 'La estructura del rfc debe ser valida');
     }
-
+    return valido;
 }
 function validarExtencion(campo, ext1) {
     var name = $(campo).val();

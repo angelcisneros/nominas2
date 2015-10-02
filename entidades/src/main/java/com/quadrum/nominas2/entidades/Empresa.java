@@ -55,6 +55,9 @@ public class Empresa implements java.io.Serializable {
 
     @Column(name = "acceso_por_sucursales", nullable = false)
     @Getter @Setter private boolean accesoPorSucursales;
+    
+    @Column(name = "archivosTimbrados", nullable = false)
+    @Getter @Setter private int archivosTimbrados;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "empresa")
     @Getter @Setter private List<Sucursal> sucursals;

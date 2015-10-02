@@ -33,9 +33,8 @@ public  class RiesgoPuesto implements java.io.Serializable {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "riesgoPuesto")
     @Getter @Setter private List<InformacionOpcional> informacionOpcionals;
 
-    public RiesgoPuesto(int id, String nombre) {
+    public RiesgoPuesto(int id) {
         this.id = id;
-        this.nombre = nombre;
     }
 
 }

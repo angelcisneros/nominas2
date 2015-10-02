@@ -38,4 +38,9 @@ public  class RegimenContratacion implements java.io.Serializable {
         this.nombre = nombre;
     }
 
+    public RegimenContratacion(int id) {
+        this.id = id;
+    }
+    
+
 }

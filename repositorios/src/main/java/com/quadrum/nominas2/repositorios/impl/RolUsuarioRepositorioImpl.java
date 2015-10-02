@@ -7,7 +7,7 @@
 package com.quadrum.nominas2.repositorios.impl;
 
 import com.quadrum.nominas2.entidades.RolUsuario;
-import com.quadrum.nominas2.entidades.RolUsuarioId;;
+import com.quadrum.nominas2.entidades.RolUsuarioId;
 import com.quadrum.nominas2.repositorios.RolUsuarioRepositorio;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

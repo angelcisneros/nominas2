@@ -7,7 +7,6 @@
 package com.quadrum.nominas2.servicios.logs;
 
 import com.quadrum.nominas2.entidades.Empresa;
-
 /**
  *
  * @author vcisneros
